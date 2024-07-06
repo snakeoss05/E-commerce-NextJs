@@ -1,12 +1,16 @@
 import React from "react";
+import Image from "next/image";
 
 export default function Contact() {
   return (
     <div className="flex flex-col sm:flex-row items-center justify-center">
       <div className="flex flex-col px-9 py-12 text-sm leading-5 text-black bg-white rounded shadow-sm max-w-[340px]">
         <div className="flex gap-4 text-base font-medium text-black">
-          <img
+          <Image
             loading="lazy"
+            alt="call"
+            width={20}
+            height={20}
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/4c3adeddc5c9e4686049185eec05edf726c5ccbe1f3b16611c2da9a310ca5061?"
             className="shrink-0 w-10 aspect-square fill-red-500"
           />
@@ -16,9 +20,12 @@ export default function Contact() {
         <div className="mt-4">Phone: +8801611112222</div>
         <div className="shrink-0 mt-8 h-px bg-black border border-black border-solid" />
         <div className="flex gap-4 mt-8 text-base font-medium text-black">
-          <img
+          <Image
             loading="lazy"
+            alt="mail"
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/78ce634fd57696e4af7a0dd0217c81b3d24659ea00c5b91dd9cc701749c73926?"
+            width={20}
+            height={20}
             className="shrink-0 w-10 aspect-square fill-red-500"
           />
           <div className="my-auto">Write To US</div>

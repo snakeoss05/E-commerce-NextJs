@@ -1,17 +1,16 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { login } from "@/lib/features/auth/authAction";
 import { useAppDispatch } from "@/lib/hooks";
-import { useAppSelector } from "@/lib/hooks";
+
 export default function SignIn() {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const inputRefs = useRef([]);
   const [register, setRegister] = useState({
     name: "",
     email: "",

@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import axios from "axios";
-import toast from "react-hot-toast";
+import Image from "next/image";
 export default function AccountDetails() {
   const [infoAccount, setrinfoAccount] = useState({
     name: "",
@@ -81,8 +80,11 @@ export default function AccountDetails() {
             name="email"
             className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
           />
-          <img
+          <Image
             src="https://cdn-icons-png.freepik.com/512/10148/10148110.png?ga=GA1.1.1586744004.1715461305"
+            alt="mail"
+            width={20}
+            height={20}
             className="w-4 h-4 absolute   right-2  top-2"
           />
         </label>

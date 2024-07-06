@@ -4,15 +4,21 @@ import ProductItem from "../../components/ProductItem/ProductItem";
 import axios from "axios";
 import { useAppSelector } from "@/lib/hooks";
 import { getWishlistById } from "@/utils/wishlistService";
+
 export default function WhishList() {
   const [products, setProducts] = useState([]);
   const user = useAppSelector((state) => state.auth.user.user);
 
-  if (!user) return;
-
   useEffect(() => {
-    getWishlistById(user._id).then((data) => setProducts(data.data.productId));
-  }, []);
+    if (user) {
+      getWishlistById(user._id).then((data) =>
+        setProducts(data.data.productId)
+      );
+    }
+  }, [user]);
+
+  if (!user) return null;
+
   return (
     <div className="px-4 py-8 lg:px-32 lg:py-12 space-y-6">
       <div className="flex justify-between flex-row">

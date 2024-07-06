@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function SideBar() {
   const [isOpen, setisOpen] = React.useState(false);
@@ -33,7 +34,9 @@ export default function SideBar() {
           <div className="w-full grid grid-cols-2">
             <div>
               <ul className="flex flex-col me-auto items-center gap-6 text-sm bg-white rounded-r-lg  shadow-xl transition-transform duration-500 ease-in-out transform transition-all h-screen p-6">
-                <img
+                <Image
+                  width={150}
+                  height={150}
                   src="/images/logo.AVIF "
                   alt="logo"
                   className="h-16 w-auto"

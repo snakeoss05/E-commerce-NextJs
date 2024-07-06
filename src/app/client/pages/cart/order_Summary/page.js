@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useAppSelector } from "@/lib/hooks";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 export default function OrderSummary() {
@@ -147,7 +148,9 @@ export default function OrderSummary() {
                               <a
                                 href="#"
                                 className="flex items-center aspect-square w-10 h-10 shrink-0">
-                                <img
+                                <Image
+                                  width={40}
+                                  height={40}
                                   className="h-auto w-full max-h-full dark:hidden"
                                   src={item.image}
                                   alt="imac image"

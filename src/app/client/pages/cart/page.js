@@ -11,7 +11,7 @@ import {
   removeItem,
 } from "@/lib/features/cart/cartReducer";
 
-export default function page() {
+export default function Cart() {
   const router = useRouter();
   const cart = useAppSelector((state) => state.cart.items);
   const totalAmount = useAppSelector((state) => state.cart.totalAmount);

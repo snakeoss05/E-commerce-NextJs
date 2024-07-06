@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { toggleDeliveryFee } from "@/lib/features/cart/cartReducer";
 import { updateUser } from "@/lib/features/auth/authAction";
-export default function page() {
+export default function Checkout() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth.user.address);

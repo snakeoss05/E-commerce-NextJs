@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Image from "next/image";
 import Link from "next/link";
 export default function SearchInput() {
   const [products, setProducts] = useState([]);
@@ -91,7 +92,9 @@ export default function SearchInput() {
                     key={product._id}>
                     <div className="grid grid-cols-1 gap-2 hover:bg-gray-100 h-[155px] overflow-hidden p-2 cursor-pointer transition-all duration-300 rounded-lg">
                       <div className="flex justify-center items-center  p-2">
-                        <img
+                        <Image
+                          width={100}
+                          height={100}
                           src={product.image}
                           className="rounded-lg w-auto h-16 object-cover"
                           alt="music"

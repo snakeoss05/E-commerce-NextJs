@@ -1,7 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import SearchInput from "./SearchInput";
-import { useAppSelector, useAppDispatch } from "@/lib/hooks";
+import Image from "next/image";
+import { useAppSelector } from "@/lib/hooks";
 import SideBar from "./SideBar";
 import DropDown from "./DropDown";
 import WishListIcon from "./WishListIcon";
@@ -18,8 +19,10 @@ export default function Navbar() {
           <div className="hidden md:flex items-center ">
             <Link href="/" className="block text-teal-600">
               <span className="sr-only">Home</span>
-              <img
+              <Image
                 src="/images/logo.AVIF "
+                width={200}
+                height={200}
                 alt="logo"
                 className="h-16 w-auto "
               />

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import axios from "axios";
+import Image from "next/image";
 import Link from "next/link";
 export default function ProductCart({
   product,
@@ -23,13 +24,17 @@ export default function ProductCart({
       <div className="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
         <a href="#" className="shrink-0 md:order-1">
           {product.image ? (
-            <img
+            <Image
+              width={200}
+              height={200}
               className="h-20 w-20 dark:hidden object-cover"
               src={product.image}
               alt="imac image"
             />
           ) : (
-            <img
+            <Image
+              width={200}
+              height={200}
               className="hidden h-20 w-20 dark:block"
               src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg"
               alt="imac image"
@@ -43,7 +48,6 @@ export default function ProductCart({
           <div className="flex items-center">
             <button
               type="button"
-              
               onClick={decreaseItemQuantity}
               id="decrement-button"
               data-input-counter-decrement="counter-input"

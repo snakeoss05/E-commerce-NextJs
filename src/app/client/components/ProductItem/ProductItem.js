@@ -6,24 +6,26 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import { createWishlist } from "@/utils/wishlistService";
 import Image from "next/image";
-export default function ProductItem({ product, handleDelete }) {
-  if (!product) return;
+export default function ProductItem({ product }) {
   const user = useAppSelector((state) => state.auth.user.user);
   const dispatch = useAppDispatch();
+
+  if (!product) return null; // Return null to avoid rendering anything if the product is not provided
 
   const handleAddToCart = () => {
     dispatch(addItem(product));
   };
+
   function handleAddToWishlist() {
     createWishlist(product._id, user._id).then((data) => {
       toast.success("added to wishlist successfully");
     });
   }
+
   function calculateDiscount(price, discount) {
     const priceAfterDiscount = price - (price * discount) / 100;
     return priceAfterDiscount.toFixed(2);
   }
-
   return (
     <div
       className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 h-full w-full max-h-[500px]"

@@ -1,9 +1,10 @@
-// Countdown.jsx
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
-const Countdown = ({ targetDate }) => {
-  const calculateTimeLeft = () => {
+export default function Countdown({ targetDate }) {
+  const [timeLeft, setTimeLeft] = useState({});
+
+  const calculateTimeLeft = useCallback(() => {
     const difference = +new Date(targetDate) - +new Date();
     let timeLeft = {};
 
@@ -17,13 +18,9 @@ const Countdown = ({ targetDate }) => {
     }
 
     return timeLeft;
-  };
-
-  const [timeLeft, setTimeLeft] = useState({});
-  const [isClient, setIsClient] = useState(false);
+  }, [targetDate]);
 
   useEffect(() => {
-    setIsClient(true);
     setTimeLeft(calculateTimeLeft());
 
     const timer = setInterval(() => {
@@ -31,32 +28,18 @@ const Countdown = ({ targetDate }) => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [targetDate]);
-
-  if (!isClient) {
-    return null;
-  }
+  }, [calculateTimeLeft]);
 
   return (
-    <div className="flex flex-col lg:flex-row items-center py-4  rounded-lg gap-4">
-      <div className="flex space-x-4 text-center">
-        {Object.keys(timeLeft).length === 0 ? (
-          <span className="text-xl text-red-500">Sale Ended!</span>
-        ) : (
-          Object.keys(timeLeft).map((interval) => (
-            <div
-              key={interval}
-              className="flex flex-col items-center justify-center bg-gray-100 rounded-full p-2 text-center text-gray-900 w-16 h-16  sm:h-20 sm:w-20">
-              <span className="font-bold text-sm lg:text-lg">
-                {timeLeft[interval]}
-              </span>
-              <span className="text-sm capitalize font-medium">{interval}</span>
-            </div>
-          ))
-        )}
-      </div>
+    <div>
+      {timeLeft.days !== undefined ? (
+        <>
+          <span>{timeLeft.days}d</span> <span>{timeLeft.hours}h</span>{" "}
+          <span>{timeLeft.minutes}m</span> <span>{timeLeft.seconds}s</span>
+        </>
+      ) : (
+        <span>Time's up!</span>
+      )}
     </div>
   );
-};
-
-export default Countdown;
+}

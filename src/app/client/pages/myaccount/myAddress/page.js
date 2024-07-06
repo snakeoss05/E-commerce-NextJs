@@ -17,6 +17,18 @@ export default function Addresses() {
     phone: "",
   });
 
+  useEffect(() => {
+    const getAddress = async () => {
+      try {
+        const response = await axios.get(`/api/addresses/${user._id}`);
+
+        if (response.status == 200) setMyAddresses(response.data.data.address);
+      } catch (err) {
+        toast.error("Something went wrong");
+      }
+    };
+    getAddress();
+  }, [myAddress, user._id]);
   const createAddress = async () => {
     if (!address.city || !address.state || !address.street || !address.phone) {
       toast.error("Please fill all the fields");
@@ -37,18 +49,7 @@ export default function Addresses() {
       toast.error(err.message);
     }
   };
-  const getAddress = async () => {
-    try {
-      const response = await axios.get(`/api/addresses/${user._id}`);
 
-      if (response.status == 200) setMyAddresses(response.data.data.address);
-    } catch (err) {
-      toast.error("Something went wrong");
-    }
-  };
-  useEffect(() => {
-    getAddress();
-  }, []);
   const deleteAddress = async () => {
     try {
       const response = await axios.delete(`/api/addresses/${user._id}`);
@@ -60,7 +61,7 @@ export default function Addresses() {
       toast.error("Something went wrong");
     }
   };
-  console.log(myAddress);
+
   function HandleChange(event) {
     const { name, value } = event.target;
 

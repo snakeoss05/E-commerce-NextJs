@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { logout } from "@/lib/features/auth/authAction";
 import Link from "next/link";
@@ -11,15 +11,6 @@ export default function DropDown() {
   const router = useRouter();
   const isAuth = useAppSelector((state) => state.auth.token);
   const [dropdown, setDropdown] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) {
-    return null;
-  }
 
   if (!isAuth)
     return (

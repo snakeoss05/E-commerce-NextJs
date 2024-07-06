@@ -36,7 +36,7 @@ export default function Products() {
     };
 
     fetchProducts();
-  }, [page, discount]);
+  }, [page, discount, category]);
   const handleDelete = async (id) => {
     const res = await fetch(`/api/products/${id}`, {
       method: "DELETE",

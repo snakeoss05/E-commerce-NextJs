@@ -19,7 +19,7 @@ export default function BestSales() {
         console.log(error);
       }
     };
-    if (products.length === 0) fetchProducts();
+    fetchProducts();
   }, [page]);
   return (
     <div className="mx-auto py-8 lg:p-24  space-y-8  ">
@@ -29,7 +29,9 @@ export default function BestSales() {
       </div>
       <div className="flex flex-row justify-between items-center">
         <h1 className="text-3xl font-bold">Best Selling Products</h1>
-        <button id="viewAll"  className="bg-red-600 text-white font-bold py-4 px-8 rounded-lg hover:bg-red-700">
+        <button
+          id="viewAll"
+          className="bg-red-600 text-white font-bold py-4 px-8 rounded-lg hover:bg-red-700">
           View All Products
         </button>
       </div>

@@ -25,7 +25,7 @@ export default function FlashSales() {
       }
     };
     if (products.length === 0) fetchProducts();
-  }, [page]);
+  }, [page, products.length]);
   return (
     <div className="mx-auto py-4 lg:p-24 border-b border-gray-300 space-y-8 ">
       <div className="flex flex-row gap-2 ">
@@ -48,7 +48,9 @@ export default function FlashSales() {
       </div>
       <div>
         <Link href="/client/pages/product?discount=true" className="flex">
-          <button id="viewAll" className="bg-red-600 text-white font-bold py-4 px-8 rounded-lg mx-auto hover:bg-red-700">
+          <button
+            id="viewAll"
+            className="bg-red-600 text-white font-bold py-4 px-8 rounded-lg mx-auto hover:bg-red-700">
             View All Products
           </button>
         </Link>

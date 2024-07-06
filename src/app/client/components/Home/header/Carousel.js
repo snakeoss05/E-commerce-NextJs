@@ -1,6 +1,7 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+
 export default function Carousel() {
   const images = [
     "/images/iphone.AVIF",
@@ -15,18 +16,20 @@ export default function Carousel() {
     );
   };
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentIndex((prevIndex) =>
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
-  };
+  }, [images.length]);
+
   useEffect(() => {
-    const interval = setInterval(nextSlide, 50000); // Change slide every 3 seconds
+    const interval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
     return () => clearInterval(interval); // Clean up the interval on component unmount
-  }, []);
+  }, [nextSlide]);
+
   return (
-    <div className="relative w-full  mx-auto  overflow-hidden">
-      <div className="overflow-hidden rounded-lg shadow-lg w-full h-full ">
+    <div className="relative w-full mx-auto overflow-hidden">
+      <div className="overflow-hidden rounded-lg shadow-lg w-full h-full">
         <Image
           src={images[currentIndex]}
           width={1300}
