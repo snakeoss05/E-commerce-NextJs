@@ -29,7 +29,7 @@ const AddProductForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("/api/products", {
+    const res = await fetch("https://elctroshoptn.netlify.app/api/products", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
