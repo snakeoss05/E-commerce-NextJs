@@ -1,8 +1,53 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import ProductItem from "../../components/ProductItem/ProductItem";
 import Filter from "../../components/filter/Filter";
 import Pagination from "../../components/Pagination/Pagination";
+import { useSearchParams } from "next/navigation";
+import ProductSkeleton from "../../components/ProductItem/ProductSkeleton";
+import axios from "axios";
 export default function Products() {
+  const searchParams = useSearchParams();
+  const discount = searchParams.get("discount");
+  const category = searchParams.get("category");
+  const [products, setProducts] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const queryParams = new URLSearchParams({});
+      if (discount === "true") {
+        queryParams.append("discount", discount);
+      }
+      if (category !== null) {
+        queryParams.append("category", category);
+      }
+
+      try {
+        const res = await axios.get(
+          `/api/products?page=${page}&limit=8&${queryParams.toString()}`
+        );
+        setProducts(res.data.data);
+        setTotalPages(res.data.totalPages);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchProducts();
+  }, [page, discount]);
+  const handleDelete = async (id) => {
+    const res = await fetch(`/api/products/${id}`, {
+      method: "DELETE",
+    });
+
+    if (res.ok) {
+      setProducts(products.filter((product) => product._id !== id));
+    } else {
+      console.error("Failed to delete product");
+    }
+  };
   return (
     <div className="flex flex-col gap-4 relative lg:gap-8 my-4 ">
       <div className="flex items-center space-x-4 ms-auto">
@@ -148,16 +193,19 @@ export default function Products() {
         </div>
         <div className="rounded-lg lg:col-span-4 gap-4 ">
           <div className="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4 ">
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
+            {products.length > 0
+              ? products.map((product) => (
+                  <ProductItem
+                    key={product._id}
+                    product={product}
+                    handleDelete={handleDelete}
+                  />
+                ))
+              : Array.from({ length: 8 }).map((_, index) => (
+                  <ProductSkeleton key={index} />
+                ))}
           </div>
-          <Pagination />
+          <Pagination page={page} totalPages={totalPages} setPage={setPage} />
         </div>
       </div>
     </div>

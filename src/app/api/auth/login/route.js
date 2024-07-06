@@ -1,6 +1,5 @@
 import { dbConnect } from "@/utils/dbConnect";
 import User from "@/models/User";
-import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
@@ -8,16 +7,24 @@ import { cookies } from "next/headers";
 dbConnect();
 
 export async function POST(req) {
-  const { email, password } = req.body;
-
   try {
+    const reqBody = await req.json();
+    const { email, password } = reqBody;
+
     // Find user by email
     const user = await User.findOne({ email }).select("+password");
-
-    // Check if user exists and password is correct
-    if (!user || !(await bcrypt.compare(password, user.password))) {
+    if (!user) {
       return NextResponse.json(
-        { success: false, message: "Invalid credentials" },
+        { success: false, message: "User not exists" },
+        { status: 401 }
+      );
+    }
+
+    const isMatch = await user.matchPassword(password);
+    // Check if user exists and password is correct
+    if (!isMatch) {
+      return NextResponse.json(
+        { success: false, message: "Password is incorrect" },
         { status: 401 }
       );
     }
@@ -26,19 +33,19 @@ export async function POST(req) {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRES_IN,
     });
+
     const response = NextResponse.json(
-      { user: user },
-      {
-        status: 200,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type, Authorization",
-        },
-      }
+      { success: true, user: user, token: token },
+      { status: 200 }
     );
-    cookies().set("token", token);
-    // Send token in response
+
+    // Set token in cookies
+    response.cookies.set("token", token, {
+      httpOnly: true,
+      sameSite: "strict",
+      path: "/",
+    });
+
     return response;
   } catch (error) {
     return NextResponse.json(

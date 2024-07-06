@@ -1,3 +1,56 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #555;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #121212;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #242424;
+}
+
+.imagePrimary {
+  margin: auto;
+  padding: 10px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.imageSecondary {
+  position: absolute;
+  padding: 10px;
+  margin: auto;
+
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.card:hover .imageSecondary {
+  opacity: 1;
+}
+
+.card:hover .imagePrimary {
+  opacity: 0;
+}
+
+.toggler:hover .dropdown {
+  width: 450px;
+}
+.toggler:hover .arrow {
+  transform: rotate(0deg);
+}
+@media screen and (max-width: 768px) {
+  .toggler:hover .dropdown {
+    height: 300px;
+    width: 100%;
+  }
+}

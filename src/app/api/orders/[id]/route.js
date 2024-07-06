@@ -19,20 +19,27 @@ export async function GET(req, { params }) {
   }
 }
 
-export async function PUT(req, { params }) {
-  try {
-    const data = await req.json();
-    const order = await Order.findByIdAndUpdate(params.id, data, {
-      new: true,
-      runValidators: true,
-    });
-    if (!order) {
-      return NextResponse.json({ success: false }, { status: 404 });
-    }
-    return NextResponse.json({ success: true, data: order }, { status: 200 });
-  } catch (error) {
-    return NextResponse.json({ success: false }, { status: 400 });
+export async function POST(request, { params }) {
+  await connectDB();
+
+  const { orderId, status } = await request.json();
+
+  const order = await Order.findById(orderId);
+
+  if (!order) {
+    return NextResponse.json({ message: "Order not found" }, { status: 404 });
   }
+
+  order.status = status;
+
+  if (status === "Delivered") {
+    order.isDelivered = true;
+    order.deliveredAt = Date.now();
+  }
+
+  await order.save();
+
+  return NextResponse.json(order);
 }
 
 export async function DELETE(req, { params }) {

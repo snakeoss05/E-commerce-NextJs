@@ -1,10 +1,9 @@
 import React from "react";
-import Layout from "../../components/layout";
-
+import AccountDetails from "./myprofile/page";
 export default function MyAccount() {
   return (
-    <Layout>
-      <h1>My Account</h1>
-    </Layout>
+    <div>
+      <AccountDetails />
+    </div>
   );
 }

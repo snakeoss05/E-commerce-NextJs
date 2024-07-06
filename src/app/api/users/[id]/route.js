@@ -19,6 +19,7 @@ export async function GET(req, { params }) {
 export async function PUT(req, { params }) {
   try {
     const data = await req.json();
+
     const user = await User.findByIdAndUpdate(params.id, data, {
       new: true,
       runValidators: true,

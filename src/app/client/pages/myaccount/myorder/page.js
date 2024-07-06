@@ -55,7 +55,7 @@ export default function MyOrder() {
                   <dt className="text-base font-medium text-gray-500 dark:text-gray-400">
                     Order ID:
                   </dt>
-                  <dd className="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
+                  <dd className="mt-1.5 text-base  w-16 overflow-hidden text-ellipsis font-semibold text-gray-900 dark:text-white">
                     <a href="#" className="hover:underline">
                       #FWB127364372
                     </a>
@@ -104,6 +104,7 @@ export default function MyOrder() {
                 <div className="w-full grid sm:grid-cols-2 lg:flex lg:w-64 lg:items-center lg:justify-end gap-4">
                   <button
                     type="button"
+                    aria-roledescription="cancel order"
                     className="w-full rounded-lg border border-red-700 px-3 py-2 text-center text-sm font-medium text-red-700 hover:bg-red-700 hover:text-white focus:outline-none focus:ring-4 focus:ring-red-300 dark:border-red-500 dark:text-red-500 dark:hover:bg-red-600 dark:hover:text-white dark:focus:ring-red-900 lg:w-auto">
                     Cancel order
                   </button>
@@ -119,7 +120,7 @@ export default function MyOrder() {
                   <dt className="text-base font-medium text-gray-500 dark:text-gray-400">
                     Order ID:
                   </dt>
-                  <dd className="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
+                  <dd className="mt-1.5 text-base w-16 overflow-hidden text-ellipsis text font-semibold text-gray-900 dark:text-white">
                     <a href="#" className="hover:underline">
                       #FWB125467980
                     </a>
@@ -168,6 +169,7 @@ export default function MyOrder() {
                 <div className="w-full grid sm:grid-cols-2 lg:flex lg:w-64 lg:items-center lg:justify-end gap-4">
                   <button
                     type="button"
+                    aria-roledescription="cancel order"
                     className="w-full rounded-lg border border-red-700 px-3 py-2 text-center text-sm font-medium text-red-700 hover:bg-red-700 hover:text-white focus:outline-none focus:ring-4 focus:ring-red-300 dark:border-red-500 dark:text-red-500 dark:hover:bg-red-600 dark:hover:text-white dark:focus:ring-red-900 lg:w-auto">
                     Cancel order
                   </button>

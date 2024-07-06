@@ -19,10 +19,7 @@ const AddressSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    zip: {
-      type: String,
-      required: true,
-    },
+  
   },
   {
     timestamps: true,

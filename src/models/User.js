@@ -23,7 +23,20 @@ const userSchema = new mongoose.Schema(
       select: false,
     },
     isAdmin: { type: Boolean, default: false, required: true },
-    addresses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Address" }],
+    address: {
+      phone: {
+        type: String,
+      },
+      street: {
+        type: String,
+      },
+      state: {
+        type: String,
+      },
+      city: {
+        type: String,
+      },
+    },
   },
   { timestamps: true }
 );

@@ -1,18 +1,17 @@
-import NewCollection from "./client/components/NewCollection/NewCollection";
-import Banner from "./client/components/banners/Banner";
-import BestSales from "./client/components/bestSales/BestSales";
-import FlashSales from "./client/components/flashSales/FlashSales";
-import Hearder from "./client/components/header/Hearder";
-import SingleProductMusic from "./client/components/musicProduct/SingleProductMusic";
+import Banner from "./client/components/Home/banners/Banner";
+import BestSales from "./client/components/Home/bestSales/BestSales";
+import FlashSales from "./client/components/Home/flashSales/FlashSales";
+import Hearder from "./client/components/Home/header/Hearder";
+import SingleProductMusic from "./client/components/Home/musicProduct/SingleProductMusic";
 
 export default function Home() {
   return (
     <div className="px-0 lg:px-24">
       <Hearder />
       <FlashSales />
-      <BestSales />
       <SingleProductMusic />
-      <NewCollection />
+      <BestSales />
+
       <Banner />
     </div>
   );
