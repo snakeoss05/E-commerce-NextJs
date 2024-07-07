@@ -9,7 +9,9 @@ export default function Breadcrumb() {
     .split("/")
     .filter((x) => x && x !== "client" && x !== "pages");
   return (
-    <nav aria-label="breadcrumb" className="flex capitalize ms-8 mt-6">
+    <nav
+      aria-label="breadcrumb"
+      className="flex capitalize ms-2 sm:ms-28 mt-6 overflow-x-hidden">
       <ol className="flex overflow-hidden rounded-lg border border-gray-200 text-gray-600">
         <li className="flex items-center">
           <Link
@@ -38,12 +40,12 @@ export default function Breadcrumb() {
           return isLast ? (
             <li
               key={href}
-              className="relative flex items-center"
+              className="relative flex items-center max-w-32  px-2"
               aria-current="page">
-              <span className="absolute inset-y-0 -start-px h-10 w-4 bg-gray-100 [clipPath:_polygon(0_0,_0%_100%,_100%_50%)] rtl:rotate-180"></span>
+              <span className="absolute inset-y-0  -start-px h-10 w-4 bg-gray-100 [clipPath:_polygon(0_0,_0%_100%,_100%_50%)] rtl:rotate-180"></span>
               <a
                 href="#"
-                className="flex h-10 items-center bg-white pe-4 ps-8 text-xs font-medium transition hover:text-gray-900">
+                className="flex h-10 items-center bg-white pe-4 ps-8 text-xs font-medium truncate transition hover:text-gray-900 ">
                 {value}
               </a>
             </li>
@@ -51,7 +53,7 @@ export default function Breadcrumb() {
             <li key={href} className="breadcrumb-item ">
               <Link
                 href={href}
-                className="flex h-10 border-l border-gray-200 items-center bg-gray-100 pe-4 ps-8 text-xs font-medium transition hover:text-gray-700">
+                className="flex h-10 border-l border-gray-200 items-center bg-gray-100 pe-4 ps-8 text-xs truncate font-medium transition hover:text-gray-700">
                 {value}
               </Link>
             </li>

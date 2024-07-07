@@ -49,7 +49,7 @@ export default function Products() {
     }
   };
   return (
-    <div className="flex flex-col gap-4 relative lg:gap-8 my-4 ">
+    <div className="flex flex-col gap-4 relative lg:gap-8 my-4 px-4 sm:px-16">
       <div className="flex items-center space-x-4 ms-auto">
         <button
           data-modal-toggle="filterModal"
@@ -188,7 +188,7 @@ export default function Products() {
       </div>
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-5 lg:gap-8 ">
-        <div className="rounded-lg ">
+        <div className="rounded-lg px-0  sm:px-4 ">
           <Filter />
         </div>
         <div className="rounded-lg lg:col-span-4 gap-4 ">

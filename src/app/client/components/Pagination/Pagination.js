@@ -26,7 +26,7 @@ export default function Pagination({ page, totalPages, setPage }) {
           key={index}
           onClick={() => setPage(index + 1)}
           className={`block size-8 rounded border border-gray-100  text-center leading-8  text-gray-900  hover:text-gray-100 hover:bg-blue-600 ${
-            index + 1 === page ? "bg-blue-600 text-white" : ""
+            index + 1 === page ? "bg-red-500 text-white" : ""
           }`}>
           {index + 1}
         </li>
