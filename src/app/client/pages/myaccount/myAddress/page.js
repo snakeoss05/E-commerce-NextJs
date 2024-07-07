@@ -20,7 +20,9 @@ export default function Addresses() {
   useEffect(() => {
     const getAddress = async () => {
       try {
-        const response = await axios.get(`/api/addresses/${user._id}`);
+        const response = await axios.get(
+          `https://e-commerce-backend-dvaf.onrender.com/api/addresses/${user._id}`
+        );
 
         if (response.status == 200) setMyAddresses(response.data.data.address);
       } catch (err) {
@@ -36,7 +38,10 @@ export default function Addresses() {
     }
 
     try {
-      const response = await axios.post(`/api/addresses/${user._id}`, address);
+      const response = await axios.post(
+        `https://e-commerce-backend-dvaf.onrender.com/api/addresses/${user._id}`,
+        address
+      );
       if (response.status === 201) {
         setMyAddresses([...myAddress, address]);
         dispatch(updateUser({ address: address }));
@@ -52,7 +57,9 @@ export default function Addresses() {
 
   const deleteAddress = async () => {
     try {
-      const response = await axios.delete(`/api/addresses/${user._id}`);
+      const response = await axios.delete(
+        `https://e-commerce-backend-dvaf.onrender.com/api/addresses/${user._id}`
+      );
       if (response.status === 200) {
         toast.success("Address deleted successfully");
         setMyAddresses(myAddresses.filter((address) => address._id !== id));

@@ -29,13 +29,16 @@ const AddProductForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("/api/products", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(form),
-    });
+    const res = await fetch(
+      "https://e-commerce-backend-dvaf.onrender.com/api/products",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      }
+    );
 
     if (res.ok) {
       router.push("/"); // Redirect to the homepage or product list

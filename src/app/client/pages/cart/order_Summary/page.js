@@ -34,7 +34,10 @@ export default function OrderSummary() {
       tax: 1,
     };
     try {
-      const response = await axios.post("/api/orders", data);
+      const response = await axios.post(
+        "https://e-commerce-backend-dvaf.onrender.com/api/orders",
+        data
+      );
       if (response.status === 201) {
         toast.success("Order created successfully");
 

@@ -11,7 +11,7 @@ export default function Contact() {
             alt="call"
             width={20}
             height={20}
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/4c3adeddc5c9e4686049185eec05edf726c5ccbe1f3b16611c2da9a310ca5061?"
+            src="https://cdn.builder.iohttps://e-commerce-backend-dvaf.onrender.com/api/v1/image/assets/TEMP/4c3adeddc5c9e4686049185eec05edf726c5ccbe1f3b16611c2da9a310ca5061?"
             className="shrink-0 w-10 aspect-square fill-red-500"
           />
           <div className="my-auto">Call To Us</div>
@@ -23,7 +23,7 @@ export default function Contact() {
           <Image
             loading="lazy"
             alt="mail"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/78ce634fd57696e4af7a0dd0217c81b3d24659ea00c5b91dd9cc701749c73926?"
+            src="https://cdn.builder.iohttps://e-commerce-backend-dvaf.onrender.com/api/v1/image/assets/TEMP/78ce634fd57696e4af7a0dd0217c81b3d24659ea00c5b91dd9cc701749c73926?"
             width={20}
             height={20}
             className="shrink-0 w-10 aspect-square fill-red-500"

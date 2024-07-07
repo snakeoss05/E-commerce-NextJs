@@ -12,7 +12,7 @@ export default function SearchInput() {
       if (name.length > 2)
         try {
           const res = await axios.get(
-            `/api/products/search?page=1&limit=8&name=${name}`
+            `https://e-commerce-backend-dvaf.onrender.com/api/products/search?page=1&limit=8&name=${name}`
           );
           setProducts(res.data.data);
           if (res.data.data.length > 0) setIsOpen(true);

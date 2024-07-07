@@ -20,7 +20,10 @@ export default function SignIn() {
 
     setLoading(true);
     try {
-      const response = await axios.post("/api/auth/login", logform);
+      const response = await axios.post(
+        "https://e-commerce-backend-dvaf.onrender.com/api/auth/login",
+        logform
+      );
       const { token, user } = response.data;
       console.log(token);
       dispatch(login({ token: token, user: user }));
