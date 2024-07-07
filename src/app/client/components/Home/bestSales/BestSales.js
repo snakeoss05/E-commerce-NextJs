@@ -12,9 +12,7 @@ export default function BestSales() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get(
-          `https://elctroshoptn.netlify.app/api/products?page=${page}&limit=4`
-        );
+        const res = await axios.get(`/api/products?page=${page}&limit=4`);
         setProducts(res.data.data);
         setTotalPages(res.data.totalPages);
       } catch (error) {

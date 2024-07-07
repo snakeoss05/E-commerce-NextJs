@@ -12,7 +12,7 @@ export default function SearchInput() {
       if (name.length > 2)
         try {
           const res = await axios.get(
-            `https://elctroshoptn.netlify.app/api/products/search?page=1&limit=8&name=${name}`
+            `/api/products/search?page=1&limit=8&name=${name}`
           );
           setProducts(res.data.data);
           if (res.data.data.length > 0) setIsOpen(true);

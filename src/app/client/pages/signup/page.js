@@ -19,14 +19,8 @@ export default function SignIn() {
   async function RegisterForm(e) {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "https://elctroshoptn.netlify.app/api/users",
-        register
-      );
-      const response2 = await axios.post(
-        "https://elctroshoptn.netlify.app/api/auth/login",
-        register
-      );
+      const response = await axios.post("/api/users", register);
+      const response2 = await axios.post("/api/auth/login", register);
       const { token, user } = response2.data;
       dispatch(login({ token, user }));
       toast.success("account created succesful");

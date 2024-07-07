@@ -16,7 +16,7 @@ export default function FlashSales() {
     const fetchProducts = async () => {
       try {
         const res = await axios.get(
-          `https://elctroshoptn.netlify.app/api/products?page=${page}&limit=4&discount=true`
+          `/api/products?page=${page}&limit=4&discount=true`
         );
         setProducts(res.data.data);
         setTotalPages(res.data.totalPages);

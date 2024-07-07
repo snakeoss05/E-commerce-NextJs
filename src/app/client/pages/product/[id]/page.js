@@ -26,9 +26,7 @@ export default function Product({ params }) {
   useEffect(() => {
     if (params.id) {
       const fetchProduct = async () => {
-        const response = await axios.get(
-          `https://elctroshoptn.netlify.app/api/products/${params.id}`
-        );
+        const response = await axios.get(`/api/products/${params.id}`);
         setProduct(response.data.data);
       };
 
