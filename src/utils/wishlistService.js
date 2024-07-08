@@ -21,7 +21,7 @@ export const createWishlist = async (productId, id) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(productId),
+        body: JSON.stringify({ productId: productId }),
       }
     );
     const data = await response.json();

@@ -39,14 +39,38 @@ export default function OrderSummary() {
         data
       );
       if (response.status === 201) {
-        toast.success("Order created successfully");
+        toast.custom(
+          (t) => (
+            <div
+              className={`${
+                t.visible ? "animate-enter" : "animate-leave"
+              } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}>
+              <div className="rounded-3xl  my-10 ">
+                <div className="p-8 text-center sm:p-12">
+                  <p className="text-sm font-semibold uppercase tracking-widest text-pink-500">
+                    Your order is on the way
+                  </p>
 
-        setOrderConfirmation(true);
-        const alerttimer = setTimeout(() => setOrderConfirmation(false), 8000);
+                  <h2 className="mt-6 text-3xl font-bold">
+                    Thanks for your purchase, we're getting it ready!
+                  </h2>
 
-        return () => {
-          clearTimeout(alerttimer);
-        };
+                  {user && (
+                    <Link
+                      className="mt-8 inline-block w-full rounded-full bg-blue-500 py-4 text-sm font-bold text-white shadow-xl"
+                      href="/client/pages/myaccount/myorder">
+                      Track Order
+                    </Link>
+                  )}
+                </div>
+              </div>
+            </div>
+          ),
+          {
+            duration: 5000,
+            position: "top-center",
+          }
+        );
       } else {
         toast.error("Something went wrong");
       }
@@ -257,7 +281,7 @@ export default function OrderSummary() {
         </form>
       </section>
       {orderConfirmation && (
-        <section className="rounded-3xl shadow-2xl my-10 ">
+        <div className="rounded-3xl shadow-2xl my-10 ">
           <div className="p-8 text-center sm:p-12">
             <p className="text-sm font-semibold uppercase tracking-widest text-pink-500">
               Your order is on the way
@@ -273,7 +297,7 @@ export default function OrderSummary() {
               Track Order
             </Link>
           </div>
-        </section>
+        </div>
       )}
     </div>
   );

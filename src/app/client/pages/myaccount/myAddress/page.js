@@ -43,7 +43,7 @@ export default function Addresses() {
         address
       );
       if (response.status === 201) {
-        setMyAddresses([...myAddress, address]);
+        setMyAddresses(address);
         dispatch(updateUser({ address: address }));
         toast.success("Address created successfully");
         setShow(false);
@@ -62,7 +62,7 @@ export default function Addresses() {
       );
       if (response.status === 200) {
         toast.success("Address deleted successfully");
-        setMyAddresses(myAddresses.filter((address) => address._id !== id));
+        setMyAddresses({});
       }
     } catch (err) {
       toast.error("Something went wrong");

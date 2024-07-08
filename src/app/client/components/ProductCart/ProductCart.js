@@ -1,15 +1,17 @@
-"use client";
-import { useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
+import { toast } from "react-hot-toast";
+import { useAppSelector } from "@/lib/hooks";
 export default function ProductCart({
   product,
   decreaseItemQuantity,
   increaseItemQuantity,
   removeItem,
 }) {
+  const user = useAppSelector((state) => state.auth.token);
   async function addToWhishList(id) {
+    if (!user) return toast.error("Please login to add to wishlist");
     try {
       const response = await axios.post(
         `https://e-commerce-backend-dvaf.onrender.com/api/wishlist/${id}`

@@ -24,7 +24,7 @@ export default function BestSales() {
     fetchProducts();
   }, [page]);
   return (
-    <div className="mx-auto py-8 lg:p-24  space-y-8  ">
+    <div className="mx-auto py-8 lg:p-16  space-y-8  ">
       <div className="flex flex-row gap-2 ">
         <div className="bg-red-600 h-10 w-8 rounded-lg"></div>
         <span className="text-red-600 font-bold text-lg mt-2">This Month</span>

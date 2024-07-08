@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { logout } from "@/lib/features/auth/authAction";
 import Link from "next/link";
@@ -11,6 +11,41 @@ export default function DropDown() {
   const router = useRouter();
   const isAuth = useAppSelector((state) => state.auth.token);
   const [dropdown, setDropdown] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    // Render a loading state or a placeholder during hydration
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        className="h-6 w-6 flex-shrink-0 text-gray-500 hover:text-sky-500"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        stroke="currentColor">
+        <circle
+          cx="12"
+          cy="9"
+          r="3"
+          stroke="currentColor"
+          strokeWidth="1.104"></circle>
+        <circle
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="1.104"></circle>
+        <path
+          d="M17.9691 20C17.81 17.1085 16.9247 15 11.9999 15C7.07521 15 6.18991 17.1085 6.03076 20"
+          stroke="currentColor"
+          strokeWidth="1.104"
+          strokeLinecap="round"></path>
+      </svg>
+    );
+  }
 
   if (!isAuth)
     return (

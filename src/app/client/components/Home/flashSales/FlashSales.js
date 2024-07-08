@@ -27,13 +27,15 @@ export default function FlashSales() {
     if (products.length === 0) fetchProducts();
   }, [page, products.length]);
   return (
-    <div className="mx-auto py-4 lg:p-24 border-b border-gray-300 space-y-8 ">
+    <div className="mx-auto py-4 lg:p-16 border-b border-gray-300 space-y-8 ">
       <div className="flex flex-row gap-2 ">
         <div className="bg-red-600 h-10 w-8 rounded-lg"></div>
         <span className="text-red-600 font-bold text-lg mt-2">Today's</span>
       </div>
-      <div className="flex flex-col lg:flex-row items-center gap-4 ">
-        <h2 className="text-2xl lg:text-3xl font-bold mb-4">Flash Sales :</h2>
+      <div className="flex flex-col lg:flex-row items-center gap-2 sm:gap-4 ">
+        <h2 className="text-2xl lg:text-3xl font-bold mb-2 sm:mb-4">
+          Flash Sales
+        </h2>
         <Countdown targetDate={targetDate} />
       </div>
 

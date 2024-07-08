@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
+
 export default function AccountDetails() {
   const [infoAccount, setrinfoAccount] = useState({
     name: "",
@@ -26,12 +26,12 @@ export default function AccountDetails() {
     if (infoAccount.password) updateFields.password = infoAccount.password;
   }
   return (
-    <div className="px-4 py-8 lg:py-16  lg:ps-20 w-full lg:w-1/3">
+    <div className="px-4 py-8 lg:py-8  lg:ps-20 w-full lg:w-1/3">
       <h1 className=" font-bold text-xl lg:text-2xl">Acoount Details</h1>
       <h2 className="my-12 uppercase font-semibold text-1xl lg:text-xl ">
         Profile Details
       </h2>
-      <form className="grid gap-4 grid-cols-1 px-4">
+      <form className="grid gap-4 grid-cols-1 ">
         <label
           htmlFor="Name"
           className="block overflow-hidden rounded-md border border-gray-200 px-3 py-2 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
@@ -80,13 +80,6 @@ export default function AccountDetails() {
             name="email"
             className="mt-1 w-full border-none p-0 focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
           />
-          <Image
-            src="https://cdn-icons-png.freepik.com/512/10148/10148110.png?ga=GA1.1.1586744004.1715461305"
-            alt="mail"
-            width={20}
-            height={20}
-            className="w-4 h-4 absolute   right-2  top-2"
-          />
         </label>
         <label
           htmlFor="Password"
@@ -107,7 +100,7 @@ export default function AccountDetails() {
           />
         </label>
         <button
-          className="btn bg-primary-700 p-4 rounded-lg w-full text-white hover:shadow-lg"
+          className="btn bg-primary-700 py-2 px-4 rounded-lg w-full text-white hover:shadow-lg"
           onClick={handleSubmit}>
           Save Changes
         </button>

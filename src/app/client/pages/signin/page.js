@@ -25,14 +25,12 @@ export default function SignIn() {
         logform
       );
       const { token, user } = response.data;
-      console.log(token);
       dispatch(login({ token: token, user: user }));
       setLoading(false);
       toast.success("login succcesful");
-
       router.push("/");
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.message);
       setLoading(false);
     }
   }

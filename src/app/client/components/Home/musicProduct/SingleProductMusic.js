@@ -4,20 +4,20 @@ import Image from "next/image";
 export default function SingleProductMusic() {
   const targetDate = "2024-07-15T00:00:00";
   return (
-    <div className="px-4 hidden lg:block lg:px-24 h-[500px] bg-gray-900 relative ">
-      <div className="absolute top-0 h-full w-full left-0 px-4 lg:px-24 grid grid-cols-1 lg:grid-cols-2  rounded-lg">
+    <div className="px-2 lg:block lg:p-24 h-[500px] bg-gray-900  rounded-lg relative w-full lg:w-11/12 mx-auto my-8 lg:my-12">
+      <div className="absolute top-0 h-full w-full left-0 px-4 lg:px-24 grid grid-cols-1 lg:grid-cols-2 ">
         <div className="flex flex-col justify-between items-start py-8">
           <p className="text-lg font-bold text-green-500 mb-4">Categories</p>
-          <h1 className="text-5xl font-bold text-white w-3/4 leading-relaxed ">
+          <h1 className="text-xl lg:text-5xl font-bold text-white w-full lg:w-3/4 leading-relaxed ">
             Enhanced Your Music Experience
           </h1>
-          <div className="text-white ">
+          <div className="text-white w-full lg:w-3/4">
             <Countdown targetDate={targetDate} />
           </div>
 
           <button
             id="buyNow"
-            className="bg-green-500 text-white font-bold py-4 px-8 rounded-lg hover:bg-green-600 mt-auto">
+            className="bg-green-500 text-white font-bold py-2 px-4 lg:py-4 lg:px-8 rounded-lg hover:bg-green-600 mt-auto">
             Buy Now
           </button>
         </div>
@@ -30,7 +30,7 @@ export default function SingleProductMusic() {
             lazyloading="true"
             alt="music"
           />
-          <div className="absolute top-0 h-full w-full  h-[400px]  my-auto left-0 ">
+          <div className="absolute top-0 h-full w-full h-1/2 lg:h-[400px]  my-auto left-0 ">
             <svg
               className="w-full h-full  opacity-75"
               viewBox="0 0 818 500"

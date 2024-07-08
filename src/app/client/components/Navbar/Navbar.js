@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 import SearchInput from "./SearchInput";
@@ -42,7 +43,7 @@ export default function Navbar() {
 
                 <li>
                   <Link
-                    href="/contact"
+                    href="/client/pages/contact"
                     className="text-gray-700 after:w-0 after:h-0.5 after:block after:bg-gray-500 after:content-[''] after:hover:w-full after:bg-gray-700 after:transition-all after:duration-300">
                     Contact
                   </Link>

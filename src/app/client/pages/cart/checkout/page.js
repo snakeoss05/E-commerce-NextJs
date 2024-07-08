@@ -143,12 +143,15 @@ export default function Checkout() {
       <form action="#" className="mx-auto max-w-screen-xl px-4 2xl:px-0">
         <div className="mt-6 sm:mt-8 lg:flex lg:items-start lg:gap-12 xl:gap-16">
           <div className="min-w-0 flex-1 space-y-8">
-            <div className="space-y-4">
+            <div className="space-y-4 border-b border-gray-200 pb-4">
               <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
                 Delivery Details
               </h2>
               {user ? (
-                <div className="flex flex-col gap-4 capitalize">
+                <div className="flex flex-col gap-4 capitalize ">
+                  <p className="text-base text-xl text-gray-400">
+                    Shipping Address
+                  </p>
                   <p className="text-base text-gray-500 font-bold ">
                     {" "}
                     {user?.city},{user?.state}
@@ -206,7 +209,8 @@ export default function Checkout() {
                       value={address.city}
                       name="city"
                       className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500">
-                      <option defaultValue="Tunis">Tunis</option>
+                      <option defaultValue>Select City*</option>
+                      <option value="Tunis">Tunis</option>
                       <option value="Ariana">Ariana</option>
                       <option value="ben Arous">ben Arous</option>
                       <option value="Manouba">Manouba</option>

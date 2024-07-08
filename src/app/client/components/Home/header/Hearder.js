@@ -269,7 +269,7 @@ export default function Hearder() {
           </li>
         </ul>
       </div>
-      <div className="col-span-4 p-4 ">
+      <div className="col-span-4 my-4 ">
         <Carousel />
       </div>
     </div>

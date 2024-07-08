@@ -9,17 +9,17 @@ export default function SearchInput() {
   const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
     const fetchProducts = async () => {
-      if (name.length > 2)
+      if (name.length > 2) {
         try {
           const res = await axios.get(
-            `https://e-commerce-backend-dvaf.onrender.com/api/products/search?page=1&limit=8&name=${name}`
+            `https://e-commerce-backend-dvaf.onrender.com/api/products/search?name=${name}`
           );
           setProducts(res.data.data);
           if (res.data.data.length > 0) setIsOpen(true);
         } catch (error) {
           console.log(error);
         }
-      else {
+      } else {
         setIsOpen(false);
       }
     };

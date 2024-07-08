@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { createWishlist } from "@/utils/wishlistService";
 import Image from "next/image";
 export default function ProductItem({ product }) {
-  const user = useAppSelector((state) => state.auth.user.user);
+  const user = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
 
   if (!product) return null; // Return null to avoid rendering anything if the product is not provided
@@ -17,6 +17,7 @@ export default function ProductItem({ product }) {
   };
 
   function handleAddToWishlist() {
+    if (!user) return toast.error("Please login to add to wishlist");
     createWishlist(product._id, user._id).then((data) => {
       toast.success("added to wishlist successfully");
     });

@@ -28,7 +28,7 @@ export default function Carousel() {
   }, [nextSlide]);
 
   return (
-    <div className="relative w-full mx-auto overflow-hidden">
+    <div className="relative w-full mx-auto overflow-hidden ">
       <div className="overflow-hidden rounded-lg shadow-lg w-full h-full">
         <Image
           src={images[currentIndex]}
@@ -40,7 +40,7 @@ export default function Carousel() {
         />
       </div>
 
-      <div className="flex absolute justify-center mt-4 space-x-4 bottom-4 left-1/2">
+      <div className="flex absolute justify-center items-center mt-4 space-x-4 bottom-4 w-full">
         {images.map((_, index) => (
           <button
             aria-label={`Slide ${index + 1}`}

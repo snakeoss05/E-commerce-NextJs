@@ -33,7 +33,7 @@ const Countdown = ({ targetDate }) => {
 
   return (
     <div className="flex flex-col lg:flex-row items-center py-4  rounded-lg gap-4">
-      <div className="flex space-x-4 text-center">
+      <div className="flex flex-row space-x-2 sm:space-x-6 items-center justify-center   text-center">
         {Object.keys(timeLeft).length === 0 ? (
           <span className="text-xl text-red-500">Sale Ended!</span>
         ) : (
@@ -44,7 +44,9 @@ const Countdown = ({ targetDate }) => {
               <span className="font-bold text-sm lg:text-lg">
                 {timeLeft[interval]}
               </span>
-              <span className="text-sm capitalize font-medium">{interval}</span>
+              <span className="text-sm capitalize sm:font-medium">
+                {interval}
+              </span>
             </div>
           ))
         )}
