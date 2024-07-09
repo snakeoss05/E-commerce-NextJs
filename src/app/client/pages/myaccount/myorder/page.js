@@ -23,7 +23,7 @@ export default function MyOrder() {
         setLoading(false);
       });
     }
-  }, [user]);
+  }, [user, page]);
 
   function handleStatusChange(orderId, status) {
     updateOrderStatus(orderId, status).then((data) => {

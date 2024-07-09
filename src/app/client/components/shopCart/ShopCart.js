@@ -2,6 +2,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
+import Image from "next/image";
 import {
   decreaseItemQuantity,
   increaseItemQuantity,
@@ -46,9 +47,11 @@ export default function OffcanvasCart() {
                 key={item.id}
                 className="flex flex-col items-center justify-between py-2 border-b gap-2 border-gray-200">
                 <div className="flex items-center flex-row justify-start gap-2 w-full px-2">
-                  <img
+                  <Image
                     src={item.image}
                     alt={item.name}
+                    width={50}
+                    height={50}
                     className="w-16 h-16 object-cover mr-2"
                   />
                   <h3 className="text-sm font-medium">{item.name}</h3>

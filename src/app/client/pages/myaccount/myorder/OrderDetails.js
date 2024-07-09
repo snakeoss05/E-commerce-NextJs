@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { getOrdersProducts } from "@/utils/orderService";
 import Image from "next/image";
 export default function OrderDetails({ orderId, isOpen, onClose }) {
-  if (!isOpen) return null;
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -14,6 +13,7 @@ export default function OrderDetails({ orderId, isOpen, onClose }) {
       });
     }
   }, [orderId]);
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center  justify-center p-4 overflow-auto bg-black bg-opacity-50">
