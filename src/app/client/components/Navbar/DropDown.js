@@ -135,7 +135,10 @@ export default function DropDown() {
 
               <div className="my-auto">Manage My Account</div>
             </Link>
-            <div className="flex gap-4 mt-3.5 w-full py-1 hover:bg-gray-500 px-2 rounded cursor-pointer transition-all duration-300 ">
+
+            <Link
+              href="/client/pages/myaccount/myorder"
+              className="flex gap-4 mt-3.5 w-full py-1 hover:bg-gray-500 px-2 rounded cursor-pointer transition-all duration-300 ">
               <svg
                 width="24"
                 height="24"
@@ -158,7 +161,7 @@ export default function DropDown() {
               </svg>
 
               <div>My Order</div>
-            </div>
+            </Link>
 
             <div
               className="flex gap-4 mt-3.5 w-full py-1 hover:bg-gray-500 px-2 rounded cursor-pointer transition-all duration-300 whitespace-nowrap"

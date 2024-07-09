@@ -36,6 +36,24 @@ export const getOrdersById = async (orderId, page) => {
     throw error;
   }
 };
+export const getOrdersProducts = async (orderId) => {
+  try {
+    const response = await fetch(
+      `https://e-commerce-backend-dvaf.onrender.com/api/orders/getOrderProducts/${orderId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error creating wishlist:", error);
+    throw error;
+  }
+};
 export const getOrders = async () => {
   try {
     const response = await fetch(
@@ -48,6 +66,25 @@ export const getOrders = async () => {
       }
     );
 
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error creating wishlist:", error);
+    throw error;
+  }
+};
+export const updateOrderStatus = async (orderId, orderData) => {
+  try {
+    const response = await fetch(
+      `https://e-commerce-backend-dvaf.onrender.com/api/orders/${orderId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status: orderData }),
+      }
+    );
     const data = await response.json();
     return data;
   } catch (error) {

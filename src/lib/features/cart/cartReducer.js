@@ -9,7 +9,7 @@ const initialState = {
   includeDeliveryFee: false,
   tax: 1, // 10% tax as an example
   totalFinal: 0,
-  isOpen: true,
+  isOpen: false,
 };
 
 const calculateTotalFinal = (totalAmount, totalSaving, tax) => {
