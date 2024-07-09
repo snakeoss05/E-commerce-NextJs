@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useAppDispatch } from "@/lib/hooks";
 import Link from "next/link";
 import toast from "react-hot-toast";
+import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { login } from "@/lib/features/auth/authAction";
@@ -44,16 +45,18 @@ export default function SignIn() {
   }
   return (
     <div>
-      <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-screen-xl p-4 pb-8 lg:px-8">
         <div className="mx-auto max-w-lg">
           <h1 className="text-center text-2xl font-bold text-black sm:text-3xl">
             Welcome to Electro Stroe
           </h1>
-
-          <p className="mx-auto mt-4 max-w-md text-center text-gray-500">
-            Login to your account
-          </p>
-
+          <Image
+            src="/images/logo.AVIF"
+            alt="logo"
+            className="mx-auto"
+            width={200}
+            height={200}
+          />
           <form
             action="#"
             className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">

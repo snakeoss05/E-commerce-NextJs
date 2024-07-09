@@ -147,7 +147,7 @@ export default function Checkout() {
               <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
                 Delivery Details
               </h2>
-              {user ? (
+              {isClient && user ? (
                 <div className="flex flex-col gap-4 capitalize ">
                   <p className="text-base text-xl text-gray-400">
                     Shipping Address
@@ -329,7 +329,7 @@ export default function Checkout() {
                         aria-describedby="pay-on-delivery-text"
                         type="radio"
                         name="payment-method"
-                        onChange={DeliveryCheck}
+                        onChange={() => dispatch(toggleDeliveryFee(true))}
                         className="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
                       />
                     </div>
@@ -355,6 +355,7 @@ export default function Checkout() {
                         id="pay-on-delivery"
                         aria-describedby="pay-on-delivery-text"
                         type="radio"
+                        onChange={() => dispatch(toggleDeliveryFee(true))}
                         name="payment-method"
                         defaultValue=""
                         className="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"

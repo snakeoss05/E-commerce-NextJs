@@ -9,6 +9,7 @@ const initialState = {
   includeDeliveryFee: false,
   tax: 1, // 10% tax as an example
   totalFinal: 0,
+  isOpen: true,
 };
 
 const calculateTotalFinal = (totalAmount, totalSaving, tax) => {
@@ -119,6 +120,12 @@ const cart = createSlice({
         ? (state.totalFinal += 7)
         : (state.totalFinal -= 7);
     },
+    closeCart(state) {
+      state.isOpen = false;
+    },
+    openCart(state) {
+      state.isOpen = true;
+    },
     clearCart(state) {
       state.items = [];
       state.totalQuantity = 0;
@@ -142,6 +149,8 @@ export const {
   toggleDeliveryFee,
   clearCart,
   setCart,
+  closeCart,
+  openCart,
 } = cart.actions;
 
 export default cart.reducer;

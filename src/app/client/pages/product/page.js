@@ -52,7 +52,7 @@ export default function Products() {
     }
   };
   return (
-    <div className="flex flex-col gap-4 relative lg:gap-8 my-4 px-4 sm:px-16">
+    <div className="flex flex-col gap-4 relative lg:gap-8 my-4 px-4 sm:px-8">
       <div className="flex items-center space-x-4 ms-auto">
         <button
           data-modal-toggle="filterModal"

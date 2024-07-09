@@ -15,14 +15,13 @@ import { useAppSelector } from "@/lib/hooks";
 export default function Product({ params }) {
   const [product, setProduct] = useState(null);
   const dispatch = useAppDispatch();
-  const user = useAppSelector((state) => state.auth.user.user);
+  const user = useAppSelector((state) => state.auth.user);
   const quantity =
     useAppSelector((state) =>
       state.cart.items.map((item) =>
-        item.id === product._id ? item.quantity : 0
+        item.id === params.id ? item.quantity : 0
       )
     ) || 0;
-
   useEffect(() => {
     if (params.id) {
       const fetchProduct = async () => {

@@ -122,7 +122,7 @@ export default function Cart() {
                       Original price
                     </dt>
                     <dd className="text-base font-medium text-gray-900 dark:text-white">
-                      {totalAmount.toFixed(2)}DT
+                      {totalAmount}DT
                     </dd>
                   </dl>
                   <dl className="flex items-center justify-between gap-4">
@@ -130,8 +130,9 @@ export default function Cart() {
                       Savings
                     </dt>
                     <dd className="text-base font-medium text-green-600">
-                      {totalSaving.toFixed(2)}DT
+                      {totalSaving}DT
                     </dd>
+                    s
                   </dl>
 
                   <dl className="flex items-center justify-between gap-4">
@@ -148,7 +149,7 @@ export default function Cart() {
                     Total
                   </dt>
                   <dd className="text-base font-bold text-gray-900 dark:text-white">
-                    {totalFinal.toFixed(2)} DT
+                    {totalFinal} DT
                   </dd>
                 </dl>
               </div>

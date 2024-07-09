@@ -1,20 +1,25 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import SearchInput from "./SearchInput";
 import Image from "next/image";
-import { useAppSelector } from "@/lib/hooks";
+import { useAppSelector, useAppDispatch } from "@/lib/hooks";
+import { openCart } from "@/lib/features/cart/cartReducer";
 import SideBar from "./SideBar";
 import DropDown from "./DropDown";
 import WishListIcon from "./WishListIcon";
 
 export default function Navbar() {
   const totalitems = useAppSelector((state) => state.cart.totalQuantity);
+  const [isMounted, setIsMounted] = useState(false);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   return (
-    <header
-      className="bg-white shadow sticky top-0 z-50"
-      style={{ zIndex: "999" }}>
+    <header className="bg-white shadow sticky top-0 z-40">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 sm:h-20 items-center w-full justify-between">
           <div className="hidden md:flex items-center ">
@@ -76,7 +81,10 @@ export default function Navbar() {
                 <DropDown />
               </div>
               <WishListIcon />
-              <Link href="/client/pages/cart" className="h-6 w-6 relative">
+              <button
+                type="button"
+                onClick={() => dispatch(openCart())}
+                className="h-6 w-6 relative">
                 <svg
                   className="flex-shrink-0 text-gray-400 hover:text-blue-500"
                   fill="none"
@@ -90,10 +98,12 @@ export default function Navbar() {
                     d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
                   />
                 </svg>
-                <p className="absolute -top-2 -right-2 h-4 w-4 bg-primary-300 text-white text-xs font-semibold text-center rounded-full">
-                  {totalitems}
-                </p>
-              </Link>
+                {isMounted && (
+                  <p className="absolute -top-2 -right-2 h-4 w-4 bg-primary-300 text-white text-xs font-semibold text-center rounded-full">
+                    {totalitems}
+                  </p>
+                )}
+              </button>
             </div>
           </div>
         </div>

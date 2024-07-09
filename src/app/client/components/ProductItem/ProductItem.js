@@ -29,7 +29,7 @@ export default function ProductItem({ product }) {
   }
   return (
     <div
-      className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 h-full w-full max-h-[500px]"
+      className="rounded-lg border border-gray-200 bg-white p-4 sm:p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 h-full w-full max-h-[500px]"
       key={product._id}>
       <div className="h-56 w-full flex  relative card overflow-hidden justify-center">
         <Image
@@ -169,14 +169,14 @@ export default function ProductItem({ product }) {
         <div className="flex flex-row  items-center justify-between  gap-4">
           <div className="flex flex-col items-start justify-end gap-2 h-full">
             <p
-              className={`text-lg font-extrabold leading-tight text-gray-900 dark:text-white  ${
+              className={`text-lg font-bold sm:font-extrabold leading-tight text-gray-900 dark:text-white  ${
                 product.discount && "line-through"
               }`}>
               {product.price} DT
             </p>
 
             {product.discount > 0 && (
-              <p className="text-lg font-extrabold leading-tight text-red-500">
+              <p className="text-lg font-bold sm:font-extrabold leading-tight text-red-500">
                 {calculateDiscount(product.price, product.discount)} DT
               </p>
             )}

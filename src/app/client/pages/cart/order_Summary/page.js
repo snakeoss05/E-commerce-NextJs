@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useAppSelector } from "@/lib/hooks";
@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 export default function OrderSummary() {
   const [orderConfirmation, setOrderConfirmation] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
   const cart = useAppSelector((state) => state.cart.items);
   const user = useAppSelector((state) => state.auth.user);
@@ -17,7 +18,9 @@ export default function OrderSummary() {
   const includeDeliveryFee = useAppSelector(
     (state) => state.cart.includeDeliveryFee
   );
-
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   async function createOrder() {
     const filterCartItems = cart.map((item) => ({
       product: item.id,
@@ -67,7 +70,7 @@ export default function OrderSummary() {
             </div>
           ),
           {
-            duration: 5000,
+            duration: 3000,
             position: "top-center",
           }
         );
@@ -79,6 +82,7 @@ export default function OrderSummary() {
     }
   }
 
+  if (!isMounted) return null;
   return (
     <div className="flex flex-col items-center justify-center ">
       <ol className="items-center flex w-full max-w-2xl text-center text-sm font-medium text-gray-500 dark:text-gray-400 sm:text-base my-8">
@@ -155,6 +159,7 @@ export default function OrderSummary() {
               <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
                 Billing &amp; Delivery information
               </h4>
+
               <dl>
                 <dt className="text-base font-medium text-gray-900 dark:text-white">
                   Individual
