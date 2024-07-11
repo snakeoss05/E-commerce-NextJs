@@ -17,14 +17,6 @@ export default function OrderDetails({ orderId, isOpen, onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center  justify-center p-4 overflow-auto bg-black bg-opacity-50">
-      {loading && (
-        <div className="flex space-x-2 justify-center items-center  bg-white py-16 sm:py-64 dark:invert">
-          <span className="sr-only">Loading...</span>
-          <div className="h-8 w-8 bg-black rounded-full animate-bounce [animation-delay:-0.3s]"></div>
-          <div className="h-8 w-8 bg-black rounded-full animate-bounce [animation-delay:-0.15s]"></div>
-          <div className="h-8 w-8 bg-black rounded-full animate-bounce"></div>
-        </div>
-      )}
       <div className="relative bg-white rounded-lg shadow-lg w-full max-w-2xl mx-auto p-6">
         <button
           className="absolute top-4 right-4 text-gray-600 hover:text-gray-900"
@@ -34,7 +26,7 @@ export default function OrderDetails({ orderId, isOpen, onClose }) {
         <h2 className="text-2xl font-semibold mb-4">Order Details</h2>
         <div>
           <h3 className="text-lg font-medium mb-2">Items Purchased</h3>
-          <ul className="space-y-2">
+          <ul className="space-y-2 overflow-y-auto max-h-[70vh] px-2">
             {order?.orderItems.map((item) => (
               <li
                 key={item._id}
@@ -56,6 +48,14 @@ export default function OrderDetails({ orderId, isOpen, onClose }) {
                 <span>{item.qty}</span>
               </li>
             ))}
+            {loading && (
+              <div className="flex justify-center items-center  bg-white ">
+                <span className="sr-only">Loading...</span>
+                <div className="h-8 w-8 bg-black rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+                <div className="h-8 w-8 bg-black rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+                <div className="h-8 w-8 bg-black rounded-full animate-bounce"></div>
+              </div>
+            )}
           </ul>
           <div className="mt-4">
             <div className="flex justify-between font-medium">

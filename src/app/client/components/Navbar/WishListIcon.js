@@ -4,14 +4,13 @@ import Link from "next/link";
 import { useAppSelector } from "@/lib/hooks";
 
 export default function WishListIcon() {
-    const isAuth = useAppSelector((state) => state.auth.token);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  if (!isMounted || !isAuth) {
+  if (!isMounted) {
     return null;
   }
 

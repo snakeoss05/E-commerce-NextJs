@@ -45,7 +45,7 @@ export default function SignIn() {
   }
   return (
     <div>
-      <div className="mx-auto max-w-screen-xl p-4 pb-8 lg:px-8">
+      <div className="mx-auto max-w-screen-xl py-8  lg:px-8">
         <div className="mx-auto max-w-lg">
           <h1 className="text-center text-2xl font-bold text-black sm:text-3xl">
             Welcome to Electro Stroe
@@ -53,7 +53,7 @@ export default function SignIn() {
           <Image
             src="/images/logo.AVIF"
             alt="logo"
-            className="mx-auto"
+            className="mx-auto w-auto h-24 sm:h-32"
             width={200}
             height={200}
           />
@@ -163,13 +163,16 @@ export default function SignIn() {
               )}
             </button>
 
-            <div className="flex items-center justify-between">
-              <p className="text-center text-sm text-gray-500 ">
-                No account?
+            <div className="flex items-center flex-row justify-between">
+              <div className="flex flex-col sm:flex-row gap-2  px-4">
+                <p className="text-center text-sm text-gray-500 ">
+                  No account?
+                </p>
                 <Link className="underline ms-2" href="/client/pages/signup">
                   Sign up
                 </Link>
-              </p>
+              </div>
+
               <p className="text-center text-sm text-red-500 ">
                 <Link className="underline ms-2" href="/client/pages/signup">
                   Forget Password?

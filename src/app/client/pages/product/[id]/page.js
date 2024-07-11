@@ -139,7 +139,7 @@ export default function Product({ params }) {
           <div className="grid grid-cols-2 sm:grid-cols-2 gap-2 items-center">
             <div className="flex flex-row h-10">
               <span
-                className="border border-gray-300 text-center h-full w-12 text-gray-400 rounded transition duration-300 ease-in-out hover:bg-red-500 hover:text-white px-2 py-2"
+                className="border border-gray-300 text-center h-full w-12 shadow appearance-none text-gray-400 rounded-l transition duration-300 ease-in-out hover:bg-red-500 hover:text-white px-2 py-2"
                 onClick={() => dispatch(increaseItemQuantity(product._id))}>
                 +
               </span>
@@ -148,22 +148,22 @@ export default function Product({ params }) {
                 type="text"
                 value={quantity}
                 readOnly
-                className="border-y border-gray-300 w-16 h-full text-center px-2 py-2"
+                className="border-y border-gray-300 w-16 shadow appearance-none h-full text-center px-2 py-2"
                 placeholder="1"
               />
 
               <span
-                className="border border-gray-300 h-full text-center w-12 text-gray-400 rounded transition duration-300 ease-in-out hover:bg-red-500 hover:text-white px-2 py-2"
+                className="border border-gray-300 h-full text-center shadow appearance-none rounded-r w-12 text-gray-400 rounded transition duration-300 ease-in-out hover:bg-red-500 hover:text-white px-2 py-2"
                 onClick={() => dispatch(decreaseItemQuantity(product._id))}>
                 -
               </span>
             </div>
             <div className="flex flex-row h-10 ms-auto">
               <button
-                className="inline-flex items-center rounded-lg mt-auto bg-gray-950 px-3 py-2.5 text-sm text-nowrap font-medium text-white hover:bg-red-600 transition duration-150 ease-in-out"
+                className="inline-flex relative items-center rounded-lg mt-auto bg-gray-950 px-3 py-2.5 overflow-hidden border border-red-400 bg-white text-red-400 shadow-md transition-all before:absolute before:left-0 before:top-0 before:h-full before:w-0 before:duration-500 after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:duration-500 hover:text-white hover:shadow-red-400 hover:before:w-2/4 hover:before:bg-red-400 hover:after:w-2/4 hover:after:bg-red-400"
                 onClick={() => dispatch(addItem(product))}>
                 <svg
-                  className="-ms-1 me-2 h-5 w-5"
+                  className="-ms-1 me-2 z-10  h-5 w-5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   width={24}
@@ -178,7 +178,7 @@ export default function Product({ params }) {
                     d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"
                   />
                 </svg>
-                Add to cart
+                <span className="relative z-10">Add to cart</span>
               </button>
             </div>
           </div>

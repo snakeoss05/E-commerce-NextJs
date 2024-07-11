@@ -13,6 +13,10 @@ export default function Products() {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+  const [stock, setStock] = useState("");
+  const [mark, setMark] = useState("");
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -22,6 +26,20 @@ export default function Products() {
       }
       if (category !== null) {
         queryParams.append("category", category);
+      }
+
+      if (minPrice !== "") {
+        queryParams.append("minPrice", minPrice);
+      }
+
+      if (maxPrice !== "") {
+        queryParams.append("maxPrice", maxPrice);
+      }
+      if (stock !== "") {
+        queryParams.append("stock", stock);
+      }
+      if (mark !== "") {
+        queryParams.append("mark", mark);
       }
 
       try {
@@ -36,7 +54,7 @@ export default function Products() {
     };
 
     fetchProducts();
-  }, [page, discount, category]);
+  }, [page, discount, category, minPrice, maxPrice, stock, mark]);
   const handleDelete = async (id) => {
     const res = await fetch(
       `https://e-commerce-backend-dvaf.onrender.com/api/products/${id}`,
@@ -192,7 +210,16 @@ export default function Products() {
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-5 lg:gap-8 ">
         <div className="rounded-lg px-0  sm:px-4 ">
-          <Filter />
+          <Filter
+            mark={mark}
+            setMark={setMark}
+            stock={stock}
+            setStock={setStock}
+            maxPrice={maxPrice}
+            minPrice={minPrice}
+            setMaxPrice={setMaxPrice}
+            setMinPrice={setMinPrice}
+          />
         </div>
         <div className="rounded-lg lg:col-span-4 gap-4 ">
           <div className="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4 ">

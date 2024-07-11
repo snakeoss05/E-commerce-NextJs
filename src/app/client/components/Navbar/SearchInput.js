@@ -27,8 +27,8 @@ export default function SearchInput() {
     fetchProducts();
   }, [name]);
   return (
-    <div className={` left-0 sm:left-auto  bg-white lg:block w-full  mx-2 `}>
-      <div className="relative lg:block w-full ">
+    <div className={` bg-gray-100 lg:block w-full   mx-2 sm:mx-auto rounded`}>
+      <div className="relative lg:block w-full   ">
         <div>
           <label htmlFor="Search" className="sr-only">
             Search
@@ -39,7 +39,7 @@ export default function SearchInput() {
             id="Search"
             onChange={(e) => setName(e.target.value)}
             placeholder="Search for..."
-            className="w-full rounded-md border-gray-200 py-1.5 sm:py-2.5 pe-10 ps-4 shadow-sm sm:text-sm"
+            className="w-full rounded-md border-gray-200 bg-gray-100 py-1.5 sm:py-2.5 pe-10 ps-4 shadow-sm sm:text-sm focus-visible:outline-none"
           />
 
           <span className="absolute inset-y-0 end-0 grid w-10 place-content-center">
@@ -54,7 +54,7 @@ export default function SearchInput() {
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
-                className="h-4 w-4">
+                className="h-6 w-6  text-gray-800">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"

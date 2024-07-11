@@ -47,67 +47,69 @@ export default function DropDown() {
     );
   }
 
-  if (!isAuth)
-    return (
-      <svg
-        viewBox="0 0 24 24"
-        onClick={() => router.push("/client/pages/signin")}
-        className="h-6 w-6 flex-shrink-0 text-gray-500 hover:text-sky-500"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        stroke="currentColor">
-        <circle
-          cx="12"
-          cy="9"
-          r="3"
-          stroke="currentColor"
-          strokeWidth="1.104"></circle>
-        <circle
-          cx="12"
-          cy="12"
-          r="10"
-          stroke="currentColor"
-          strokeWidth="1.104"></circle>
-        <path
-          d="M17.9691 20C17.81 17.1085 16.9247 15 11.9999 15C7.07521 15 6.18991 17.1085 6.03076 20"
-          stroke="currentColor"
-          strokeWidth="1.104"
-          strokeLinecap="round"></path>
-      </svg>
-    );
-
   return (
-    <div>
-      <svg
-        viewBox="0 0 24 24"
-        onClick={() => setDropdown(!dropdown)}
-        className="h-6 w-6 flex-shrink-0 text-gray-500 hover:text-sky-500"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        stroke="currentColor">
-        <circle
-          cx="12"
-          cy="9"
-          r="3"
-          stroke="currentColor"
-          strokeWidth="1.104"></circle>
-        <circle
-          cx="12"
-          cy="12"
-          r="10"
-          stroke="currentColor"
-          strokeWidth="1.104"></circle>
-        <path
-          d="M17.9691 20C17.81 17.1085 16.9247 15 11.9999 15C7.07521 15 6.18991 17.1085 6.03076 20"
-          stroke="currentColor"
-          strokeWidth="1.104"
-          strokeLinecap="round"></path>
-      </svg>
-      {dropdown && (
+    <div className="relative cursor-pointer ">
+      <div className="cursor-pointer">
+        {isAuth ? (
+          <svg
+            viewBox="0 0 24 24"
+            className="h-8 p-1 w-8  flex-shrink-0 text-gray-500 hover:text-sky-500 ms-auto leading-5"
+            fill="none"
+            onClick={() => setDropdown(!dropdown)}
+            xmlns="http://www.w3.org/2000/svg"
+            stroke="currentColor">
+            <circle
+              cx="12"
+              cy="9"
+              r="3"
+              stroke="currentColor"
+              strokeWidth="1.104"></circle>
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="1.104"></circle>
+            <path
+              d="M17.9691 20C17.81 17.1085 16.9247 15 11.9999 15C7.07521 15 6.18991 17.1085 6.03076 20"
+              stroke="currentColor"
+              strokeWidth="1.104"
+              strokeLinecap="round"></path>
+          </svg>
+        ) : (
+          <svg
+            viewBox="0 0 24 24"
+            onClick={() => router.push("/client/pages/signin")}
+            className="h-6 w-6 flex-shrink-0 text-gray-500 hover:text-sky-500 "
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            stroke="currentColor">
+            <circle
+              cx="12"
+              cy="9"
+              r="3"
+              stroke="currentColor"
+              strokeWidth="1.104"></circle>
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="1.104"></circle>
+            <path
+              d="M17.9691 20C17.81 17.1085 16.9247 15 11.9999 15C7.07521 15 6.18991 17.1085 6.03076 20"
+              stroke="currentColor"
+              strokeWidth="1.104"
+              strokeLinecap="round"></path>
+          </svg>
+        )}
+
         <div
-          className="absolute top-0 right-0 mt-8 border rounded-lg shadow-xl overflow-hidden z-50 bg-gray-900 bg-opacity-50"
+          className={`origin-top-left absolute right-0  w-fit top-full h-fit  sm:h-auto rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 transition ease-out duration-300 ${
+            dropdown ? "transform  opacity-100 " : "transform  opacity-0 "
+          }`}
           onMouseLeave={() => setDropdown(false)}>
-          <div className="flex flex-col justify-center items-start px-5 pt-5 pb-2.5 text-sm leading-5 text-center rounded backdrop-blur-[75px] bg-black bg-opacity-30 w-64 text-neutral-100 text-nowrap">
+          <div className="flex relative flex-col justify-center items-start px-5 pt-5 pb-2.5 text-sm leading-5 bg-opacity-50  text-center rounded backdrop-blur-[75px] bg-black bg-opacity-30 w-64 text-neutral-100 text-nowrap">
             <Link
               href="/client/pages/myaccount/myprofile"
               className="flex w-full gap-4 hover:bg-gray-500 px-2 rounded cursor-pointer transition-all duration-300 ">
@@ -185,7 +187,7 @@ export default function DropDown() {
             </div>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

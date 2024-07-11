@@ -8,7 +8,7 @@ export default function Layout({ children }) {
   return (
     <div className="min-h-screen flex flex-col ">
       <TopBanner />
-       <ShopCart />
+      <ShopCart />
       <Navbar />
       <Breadcrumb />
       <main className="px-8">{children}</main>

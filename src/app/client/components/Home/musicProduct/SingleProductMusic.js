@@ -4,9 +4,9 @@ import Image from "next/image";
 export default function SingleProductMusic() {
   const targetDate = "2024-07-15T00:00:00";
   return (
-    <div className="px-2 lg:block lg:p-24 h-[500px] bg-gray-900  rounded-lg relative w-full lg:w-11/12 mx-auto my-8 lg:my-12">
-      <div className="absolute top-0 h-full w-full left-0 px-4 lg:px-24 grid grid-cols-1 lg:grid-cols-2 ">
-        <div className="flex flex-col justify-between items-start py-8">
+    <div className="px-2 lg:block py-8 px-4 lg:p-16 h-[500px] bg-gray-900  rounded-lg relative w-full lg:w-11/12 mx-auto my-8 lg:my-12">
+      <div className="flex flex-col-reverse lg:flex-row gap-8">
+        <div className="flex flex-col justify-between items-start ">
           <p className="text-lg font-bold text-green-500 mb-4">Categories</p>
           <h1 className="text-xl lg:text-5xl font-bold text-white w-full lg:w-3/4 leading-relaxed ">
             Enhanced Your Music Experience

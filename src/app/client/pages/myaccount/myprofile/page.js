@@ -27,7 +27,6 @@ export default function AccountDetails() {
   }
   return (
     <div className="px-4 py-8 lg:py-12 lg:ps-20 w-full lg:w-1/3">
-      <h1 className=" font-bold text-xl lg:text-2xl">Acoount Details</h1>
       <h2 className="my-12 uppercase font-semibold text-1xl lg:text-xl ">
         Profile Details
       </h2>

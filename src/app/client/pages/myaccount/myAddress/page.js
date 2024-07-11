@@ -78,7 +78,7 @@ export default function Addresses() {
     }));
   }
   return (
-    <div className="bg-gray-100 h-full w-full p-4  sm:p-16  flex flex-col  gap-4  overflow-y-auto ">
+    <div className="bg-gray-100 h-full w-full p-4 my-4 sm:p-16  flex flex-col  gap-4  overflow-y-auto ">
       <p className="text-3xl font-bold text-gray-700 text-center py-4 ">
         My Address
       </p>

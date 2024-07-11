@@ -1,64 +1,44 @@
-"use client";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-
-export default function SideBar() {
-  const [isOpen, setisOpen] = React.useState(false);
+const Dropdown = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="block sm:hidden">
-      <button
-        aria-label="Toggle Menu"
-        className="rounded-md bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75 text-center flex items-center gap-2"
-        type="button">
-        <svg
-          className="h-5 w-5"
-          onClick={() => setisOpen(!isOpen)}
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M4 6h16M4 12h16M4 18h16"
-          />
-        </svg>
-    
-      </button>
-
-      {isOpen && (
-        <div className="fixed inset-0 top-0 left-0 w-screen h-screen  z-50 flex items-center justify-end bg-black bg-opacity-50   mx-auto">
-          <div className="w-full grid grid-cols-2  ">
-            <ul className="flex flex-col items-start overflow-y-auto h-screen justify-start me-auto items-center gap-4 text-sm bg-white rounded-r-lg  shadow-xl relative h-screen p-6">
-              <Image
-                width={150}
-                height={150}
-                src="/images/logo.AVIF "
-                alt="logo"
-                className="h-16 w-auto"
-              />
-              <svg
-                className="h-6 w-6 absolute top-6 right-6 cursor-pointer me-auto hover:rotate-90 transition-transform duration-500 ease-in-out"
-                viewBox="0 0 24 24"
-                onClick={() => setisOpen(false)}
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                stroke="#000000">
-                <path
-                  d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5"
-                  stroke="#1C274C"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"></path>
-                <path
-                  d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7"
-                  stroke="#1C274C"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"></path>
-              </svg>
-              <li className="w-full">
+    <div className="relative inline-block text-left hidden sm:block">
+      <div
+        className="cursor-pointer"
+        onMouseEnter={() => setIsOpen(true)}
+        onMouseLeave={() => setIsOpen(false)}
+        onClick={() => setIsOpen(!isOpen)}>
+        <button
+          aria-label="Toggle Menu"
+          className="rounded-md bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75 text-center flex items-center gap-2"
+          type="button">
+          <svg
+            className="h-5 w-5"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+          <span className="font-medium text-gray-600">All Categories</span>
+        </button>
+        <div
+          className={`origin-top-left absolute left-0 mt-2  w-fit top-full h-fit  sm:h-auto rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 transition ease-out duration-300 ${
+            isOpen
+              ? "transform  opacity-100 scale-100"
+              : "transform  opacity-0 scale-0"
+          }`}>
+          {" "}
+          <div className="relative  top-0  left-0  h-full   w-56  z-50">
+            <ul className="flex flex-col   p-4 sm:p-2   bg-white">
+              <li className="p-2">
                 <Link
                   href={`/client/pages/product?category=phones`}
                   className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row">
@@ -89,7 +69,7 @@ export default function SideBar() {
                   <span>Phones</span>
                 </Link>
               </li>
-              <li className="w-full">
+              <li className="p-2">
                 <Link
                   href={`/client/pages/product?category=laptops`}
                   className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row">
@@ -124,7 +104,7 @@ export default function SideBar() {
                   <span>Laptops</span>
                 </Link>
               </li>
-              <li className="w-full">
+              <li className="p-2">
                 <Link
                   href={`/client/pages/product?category=tablets`}
                   className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row">
@@ -155,8 +135,10 @@ export default function SideBar() {
                   <span>Tablets</span>
                 </Link>
               </li>
-              <li className="toggler w-full">
-                <div className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row">
+              <li className="toggler p-2">
+                <Link
+                  href={`/client/pages/product?category=gaming`}
+                  className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row">
                   <svg
                     width="32px"
                     height="32px"
@@ -206,10 +188,10 @@ export default function SideBar() {
                       d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"
                     />
                   </svg>
-                </div>
+                </Link>
                 <div className="relative sm:absolute left-0 sm:left-full dropdown transition-all duration-300 ease-in sm:w-0 top-0  z-50 sm:shadow-md rounded h-0  bg-white sm:h-full"></div>
               </li>
-              <li className="w-full">
+              <li className="p-2 toggler">
                 <Link
                   href="/client/pages/product?category=headphones"
                   className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row ">
@@ -253,7 +235,7 @@ export default function SideBar() {
                   <span>HeadPhones </span>
                 </Link>
               </li>
-              <li className="w-full">
+              <li className="p-2">
                 <Link
                   href="/client/pages/product?category=smartwatch"
                   className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row">
@@ -280,8 +262,10 @@ export default function SideBar() {
                   <span>SmartWatch</span>
                 </Link>
               </li>
-              <li className="w-full toggler">
-                <div className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row">
+              <li className="toggler p-2">
+                <Link
+                  href="/client/pages/product?category=accessories"
+                  className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row">
                   <svg
                     fill="#000000"
                     width="32px"
@@ -311,17 +295,15 @@ export default function SideBar() {
                       d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"
                     />
                   </svg>
-                </div>
+                </Link>
                 <div className="relative sm:absolute left-0 sm:left-full dropdown transition-all duration-300 ease-in sm:w-0 top-0  z-50 sm:shadow-md rounded h-0  bg-white sm:h-full"></div>
               </li>
             </ul>
-
-            <div
-              onClick={() => setisOpen(false)}
-              className="h-full w-full"></div>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
-}
+};
+
+export default Dropdown;

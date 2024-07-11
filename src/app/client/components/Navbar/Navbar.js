@@ -41,7 +41,7 @@ export default function Navbar() {
                 <li>
                   <Link
                     href="/"
-                    className="text-gray-700 after:w-0 after:h-0.5 after:block after:bg-gray-500 after:content-[''] after:hover:w-full after:bg-gray-700 after:transition-all after:duration-300">
+                    className="text-black font-normal text-[16px] after:w-0 after:h-0.5 after:block after:bg-gray-500 after:content-[''] after:hover:w-full after:bg-gray-700 after:transition-all after:duration-300">
                     Home
                   </Link>
                 </li>
@@ -49,7 +49,7 @@ export default function Navbar() {
                 <li>
                   <Link
                     href="/client/pages/contact"
-                    className="text-gray-700 after:w-0 after:h-0.5 after:block after:bg-gray-500 after:content-[''] after:hover:w-full after:bg-gray-700 after:transition-all after:duration-300">
+                    className="text-black font-normal text-[16px] after:w-0 after:h-0.5 after:block after:bg-gray-500 after:content-[''] after:hover:w-full after:bg-gray-700 after:transition-all after:duration-300">
                     Contact
                   </Link>
                 </li>
@@ -57,7 +57,7 @@ export default function Navbar() {
                 <li>
                   <Link
                     href="/about"
-                    className="text-gray-700 after:w-0 after:h-0.5 after:block after:bg-gray-500 after:content-[''] after:hover:w-full after:bg-gray-700 after:transition-all after:duration-300">
+                    className="text-black font-normal text-[16px] after:w-0 after:h-0.5 after:block after:bg-gray-500 after:content-[''] after:hover:w-full after:bg-gray-700 after:transition-all after:duration-300">
                     About
                   </Link>
                 </li>
@@ -65,7 +65,7 @@ export default function Navbar() {
                 <li>
                   <Link
                     href="/services"
-                    className="text-gray-700 after:w-0 after:h-0.5 after:block after:bg-gray-500 after:content-[''] after:hover:w-full after:bg-gray-700 after:transition-all after:duration-300">
+                    className="text-black font-normal text-[16px] after:w-0 after:h-0.5 after:block after:bg-gray-500 after:content-[''] after:hover:w-full after:bg-gray-700 after:transition-all after:duration-300">
                     Services
                   </Link>
                 </li>
@@ -77,9 +77,8 @@ export default function Navbar() {
             <SearchInput />
 
             <div className=" flex flex flex-row gap-2 sm:gap-4 items-center mx-auto  lg:mx-0">
-              <div className="relative flex flex-row items-center gap-2 sm:gap-4">
-                <DropDown />
-              </div>
+              <DropDown />
+
               <WishListIcon />
               <button
                 type="button"
