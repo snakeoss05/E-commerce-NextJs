@@ -21,7 +21,7 @@ export default function Addresses() {
     const getAddress = async () => {
       try {
         const response = await axios.get(
-          `https://e-commerce-backend-dvaf.onrender.com/api/addresses/${user._id}`
+          `http://192.168.1.2:3001/api/addresses/${user._id}`
         );
 
         if (response.status == 200) setMyAddresses(response.data.data.address);
@@ -39,7 +39,7 @@ export default function Addresses() {
 
     try {
       const response = await axios.post(
-        `https://e-commerce-backend-dvaf.onrender.com/api/addresses/${user._id}`,
+        `http://192.168.1.2:3001/api/addresses/${user._id}`,
         address
       );
       if (response.status === 201) {
@@ -58,7 +58,7 @@ export default function Addresses() {
   const deleteAddress = async () => {
     try {
       const response = await axios.delete(
-        `https://e-commerce-backend-dvaf.onrender.com/api/addresses/${user._id}`
+        `http://192.168.1.2:3001/api/addresses/${user._id}`
       );
       if (response.status === 200) {
         toast.success("Address deleted successfully");

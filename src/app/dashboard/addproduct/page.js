@@ -8,6 +8,7 @@ const AddProductForm = () => {
     name: "",
     description: "",
     price: 0,
+    mark: "",
     images: [],
     discount: 0,
     category: "",
@@ -48,13 +49,10 @@ const AddProductForm = () => {
       formData.append("images", form.images[i]);
     }
 
-    const res = await fetch(
-      "https://e-commerce-backend-dvaf.onrender.com/api/products",
-      {
-        method: "POST",
-        body: formData,
-      }
-    );
+    const res = await fetch("http://192.168.1.2:3001/api/products", {
+      method: "POST",
+      body: formData,
+    });
 
     if (res.ok) {
       router.push("/"); // Redirect to the homepage or product list
@@ -68,7 +66,7 @@ const AddProductForm = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 m-8 bg-white rounded-lg shadow-md">
+    <div className="max-w-2xl mx-auto p-6 m-8 bg-white rounded-lg shadow">
       <h2 className="text-2xl font-semibold mb-6">Add New Product</h2>
       <form onSubmit={handleSubmit} className="grid grid-cols-4 gap-4">
         <div className=" col-span-2">
@@ -84,7 +82,7 @@ const AddProductForm = () => {
             required
           />
         </div>
-        <div className=" col-span-2">
+        <div className=" col-span-1">
           <label className="block text-sm font-medium text-gray-700">
             Price
           </label>
@@ -92,6 +90,19 @@ const AddProductForm = () => {
             type="number"
             name="price"
             value={form.price}
+            onChange={handleChange}
+            className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            required
+          />
+        </div>
+        <div className=" col-span-1">
+          <label className="block text-sm font-medium text-gray-700">
+            Mark
+          </label>
+          <input
+            type="text"
+            name="mark"
+            value={form.mark}
             onChange={handleChange}
             className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             required
@@ -112,10 +123,11 @@ const AddProductForm = () => {
 
         <div className="col-span-4">
           <label className="block text-sm font-medium text-gray-700">
-            Images
+            Product Images{" "}
+            <span className="text-xs text-gray-500">(4 max)</span>
           </label>
 
-          <label className=" my-2 flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-white">
+          <label className=" my-2 flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue">
             <svg
               className="w-8 h-8"
               fill="currentColor"

@@ -30,6 +30,15 @@ export default function OrderSummary() {
     const data = {
       user: user._id,
       orderItems: filterCartItems,
+      phone: user.address.phone,
+      fullname: user.address.name,
+      email: user.address.email,
+      address:
+        user.address.state +
+        " " +
+        user.address.city +
+        " " +
+        user.address.street,
       cart: cart,
       totalPrice: totalFinal,
       paymentMethod: includeDeliveryFee ? "cash on delivery" : "cash on store",
@@ -38,42 +47,11 @@ export default function OrderSummary() {
     };
     try {
       const response = await axios.post(
-        "https://e-commerce-backend-dvaf.onrender.com/api/orders",
+        "http://192.168.1.2:3001/api/orders",
         data
       );
       if (response.status === 201) {
-        toast.custom(
-          (t) => (
-            <div
-              className={`${
-                t.visible ? "animate-enter" : "animate-leave"
-              } max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}>
-              <div className="rounded-3xl  my-10 ">
-                <div className="p-8 text-center sm:p-12">
-                  <p className="text-sm font-semibold uppercase tracking-widest text-pink-500">
-                    Your order is on the way
-                  </p>
-
-                  <h2 className="mt-6 text-3xl font-bold">
-                    Thanks for your purchase, we're getting it ready!
-                  </h2>
-
-                  {user && (
-                    <Link
-                      className="mt-8 inline-block w-full rounded-full bg-blue-500 py-4 text-sm font-bold text-white shadow-xl"
-                      href="/client/pages/myaccount/myorder">
-                      Track Order
-                    </Link>
-                  )}
-                </div>
-              </div>
-            </div>
-          ),
-          {
-            duration: 3000,
-            position: "top-center",
-          }
-        );
+        toast.success("Thanks for your purchase, we're getting it ready!");
       } else {
         toast.error("Something went wrong");
       }

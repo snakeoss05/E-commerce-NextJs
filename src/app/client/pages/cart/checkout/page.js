@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useAppSelector } from "@/lib/hooks";
 import { useAppDispatch } from "@/lib/hooks";
+import { createAddress } from "@/utils/addressService";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { toggleDeliveryFee } from "@/lib/features/cart/cartReducer";
@@ -10,12 +11,16 @@ export default function Checkout() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth.user.address);
+
   const [address, setAddress] = useState({
+    email: "",
+    name: "",
     city: "",
     state: "",
     street: "",
     phone: "",
   });
+
   const totalAmount = useAppSelector((state) => state.cart.totalAmount);
   const totalSaving = useAppSelector((state) => state.cart.totalSaving);
   const totalFinal = useAppSelector((state) => state.cart.totalFinal);
@@ -47,19 +52,18 @@ export default function Checkout() {
     }));
   }
 
-  function isAddressEmpty(address) {
-    return Object.values(address).every(
-      (value) => value === "" || value === null || value === undefined
-    );
-  }
-
   function handleAddress() {
     if (!address.city || !address.state || !address.street || !address.phone) {
       toast.error("Please fill all the fields");
 
       return;
     }
-    dispatch(updateUser({ address: address }));
+    if (user) {
+      createAddress(address, user._id);
+      dispatch(updateUser({ address: address }));
+    } else {
+      dispatch(updateUser({ address: address }));
+    }
   }
 
   function handleCheckout() {
@@ -189,8 +193,8 @@ export default function Checkout() {
                       type="text"
                       id="Full Name"
                       onChange={HandleChange}
-                      value={address.fullname}
-                      name="fullname"
+                      value={address.name}
+                      name="name"
                       className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                       placeholder="ahmed khalil"
                     />
@@ -328,8 +332,8 @@ export default function Checkout() {
                         id="pay-on-delivery"
                         aria-describedby="pay-on-delivery-text"
                         type="radio"
+                        onChange={DeliveryCheck}
                         name="payment-method"
-                        onChange={() => dispatch(toggleDeliveryFee(true))}
                         className="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"
                       />
                     </div>
@@ -355,7 +359,7 @@ export default function Checkout() {
                         id="pay-on-delivery"
                         aria-describedby="pay-on-delivery-text"
                         type="radio"
-                        onChange={() => dispatch(toggleDeliveryFee(true))}
+                        onChange={() => dispatch(toggleDeliveryFee(false))}
                         name="payment-method"
                         defaultValue=""
                         className="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600"

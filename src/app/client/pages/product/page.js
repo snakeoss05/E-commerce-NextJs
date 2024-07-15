@@ -15,8 +15,10 @@ export default function Products() {
   const [totalPages, setTotalPages] = useState(1);
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+  const [MarkList, setMarkList] = useState([]);
   const [stock, setStock] = useState("");
   const [mark, setMark] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -44,10 +46,11 @@ export default function Products() {
 
       try {
         const res = await axios.get(
-          `https://e-commerce-backend-dvaf.onrender.com/api/products?page=${page}&limit=8&${queryParams.toString()}`
+          `http://192.168.1.2:3001/api/products?page=${page}&limit=8&${queryParams.toString()}`
         );
         setProducts(res.data.data);
         setTotalPages(res.data.totalPages);
+        setMarkList(...new Set(response.data.data.map((item) => item.mark)));
       } catch (error) {
         console.log(error);
       }
@@ -56,12 +59,9 @@ export default function Products() {
     fetchProducts();
   }, [page, discount, category, minPrice, maxPrice, stock, mark]);
   const handleDelete = async (id) => {
-    const res = await fetch(
-      `https://e-commerce-backend-dvaf.onrender.com/api/products/${id}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const res = await fetch(`http://192.168.1.2:3001/api/products/${id}`, {
+      method: "DELETE",
+    });
 
     if (res.ok) {
       setProducts(products.filter((product) => product._id !== id));
@@ -71,47 +71,10 @@ export default function Products() {
   };
   return (
     <div className="flex flex-col gap-4 relative lg:gap-8 my-4 px-4 sm:px-8">
-      <div className="flex items-center space-x-4 ms-auto">
-        <button
-          data-modal-toggle="filterModal"
-          data-modal-target="filterModal"
-          type="button"
-          className="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto">
-          <svg
-            className="-ms-0.5 me-2 h-4 w-4"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24">
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeWidth="2"
-              d="M18.796 4H5.204a1 1 0 0 0-.753 1.659l5.302 6.058a1 1 0 0 1 .247.659v4.874a.5.5 0 0 0 .2.4l3 2.25a.5.5 0 0 0 .8-.4v-7.124a1 1 0 0 1 .247-.659l5.302-6.059c.566-.646.106-1.658-.753-1.658Z"
-            />
-          </svg>
-          Filters
-          <svg
-            className="-me-0.5 ms-2 h-4 w-4"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24">
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="m19 9-7 7-7-7"
-            />
-          </svg>
-        </button>
+      <div className="flex items-center space-x-4 ms-auto relative">
         <button
           id="sortDropdownButton1"
+          onClick={() => setIsOpen(!isOpen)}
           data-dropdown-toggle="dropdownSort1"
           type="button"
           className="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto">
@@ -150,8 +113,11 @@ export default function Products() {
           </svg>
         </button>
         <div
+          onMouseLeave={() => setIsOpen(false)}
           id="dropdownSort1"
-          className="z-50 hidden w-40 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700"
+          className={`origin-top-left absolute w-40 right-0 mt-2  top-full h-fit  sm:h-auto rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 transition ease-out duration-300 ${
+            isOpen ? "transform  opacity-100 " : "transform  opacity-0 "
+          }`}
           data-popper-placement="bottom">
           <ul
             className="p-2 text-left text-sm font-medium text-gray-500 dark:text-gray-400"
@@ -216,13 +182,14 @@ export default function Products() {
             stock={stock}
             setStock={setStock}
             maxPrice={maxPrice}
+            MarkList={MarkList}
             minPrice={minPrice}
             setMaxPrice={setMaxPrice}
             setMinPrice={setMinPrice}
           />
         </div>
         <div className="rounded-lg lg:col-span-4 gap-4 ">
-          <div className="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4 ">
+          <div className="mb-4 grid gap-4 grid-cols-1 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4 ">
             {products.length > 0
               ? products.map((product) => (
                   <ProductItem

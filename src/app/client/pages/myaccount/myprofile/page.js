@@ -1,9 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
-import { useAppSelector } from "@/lib/hooks";
+import { useAppSelector, useAppDispatch } from "@/lib/hooks";
+import { updateUser } from "@/lib/features/auth/authAction";
+import axios from "axios";
+import toast from "react-hot-toast";
 export default function AccountDetails() {
   const user = useAppSelector((state) => state.auth.user);
+  const token = useAppSelector((state) => state.auth.token);
+  const dispatch = useAppDispatch();
   const [infoAccount, setrinfoAccount] = useState({
     name: "",
     lastname: "",
@@ -24,6 +29,23 @@ export default function AccountDetails() {
     if (infoAccount.name) updateFields.name = infoAccount.name;
     if (infoAccount.email) updateFields.email = infoAccount.email;
     if (infoAccount.password) updateFields.password = infoAccount.password;
+
+    try {
+      const response = await axios.put(
+        "http://192.168.1.2:3001/api/profile/update",
+        updateFields,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      dispatch(updateUser(updateFields));
+      toast.success("account updated succesful");
+    } catch (error) {
+      console.log(error);
+      toast.error("something went wrong");
+    }
   }
   return (
     <div className="px-4 py-8 lg:py-12 lg:ps-20 w-full lg:w-1/3">

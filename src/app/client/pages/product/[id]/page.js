@@ -14,6 +14,7 @@ import { useAppSelector } from "@/lib/hooks";
 
 export default function Product({ params }) {
   const [product, setProduct] = useState(null);
+
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth.user);
   const quantity =
@@ -26,7 +27,7 @@ export default function Product({ params }) {
     if (params.id) {
       const fetchProduct = async () => {
         const response = await axios.get(
-          `https://e-commerce-backend-dvaf.onrender.com/api/products/${params.id}`
+          `http://192.168.1.2:3001/api/products/${params.id}`
         );
         setProduct(response.data.data);
       };
@@ -153,14 +154,14 @@ export default function Product({ params }) {
               />
 
               <span
-                className="border border-gray-300 h-full text-center shadow appearance-none rounded-r w-12 text-gray-400 rounded transition duration-300 ease-in-out hover:bg-red-500 hover:text-white px-2 py-2"
+                className="border border-gray-300 h-full text-center shadow appearance-none rounded-r w-12 text-gray-400  transition duration-300 ease-in-out hover:bg-red-500 hover:text-white px-2 py-2"
                 onClick={() => dispatch(decreaseItemQuantity(product._id))}>
                 -
               </span>
             </div>
             <div className="flex flex-row h-10 ms-auto">
               <button
-                className="inline-flex relative items-center rounded-lg mt-auto bg-gray-950 px-3 py-2.5 overflow-hidden border border-red-400 bg-white text-red-400 shadow-md transition-all before:absolute before:left-0 before:top-0 before:h-full before:w-0 before:duration-500 after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:duration-500 hover:text-white hover:shadow-red-400 hover:before:w-2/4 hover:before:bg-red-400 hover:after:w-2/4 hover:after:bg-red-400"
+                className="inline-flex relative items-center rounded-lg mt-auto bg-gray-950 px-3 py-1 overflow-hidden border border-red-400 bg-white text-red-400 shadow-md transition-all before:absolute before:left-0 before:top-0 before:h-full before:w-0 before:duration-500 after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:duration-500 hover:text-white hover:shadow-red-400 hover:before:w-2/4 hover:before:bg-red-400 hover:after:w-2/4 hover:after:bg-red-400"
                 onClick={() => dispatch(addItem(product))}>
                 <svg
                   className="-ms-1 me-2 z-10  h-5 w-5"

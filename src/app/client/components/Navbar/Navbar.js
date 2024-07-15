@@ -98,7 +98,7 @@ export default function Navbar() {
                   />
                 </svg>
                 {isMounted && (
-                  <p className="absolute -top-2 -right-2 h-4 w-4 bg-primary-300 text-white text-xs font-semibold text-center rounded-full">
+                  <p className="absolute -top-2 -right-2 h-4 w-4 bg-red-500 text-white text-xs font-semibold text-center rounded-full">
                     {totalitems}
                   </p>
                 )}

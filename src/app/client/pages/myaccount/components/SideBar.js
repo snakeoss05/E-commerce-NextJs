@@ -18,7 +18,6 @@ export default function SideBar() {
           <li className="hover:text-blue-600">
             <Link href="/client/pages/myaccount/myorder">My Orders</Link>
           </li>
-          <li className="hover:text-blue-600">My History</li>
         </ul>
       </div>
     </div>

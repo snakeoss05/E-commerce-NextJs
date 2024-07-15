@@ -19,6 +19,8 @@ const StatusBadge = ({ status }) => {
         return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300";
       case "cancelled":
         return "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300";
+        case "declined":
+        return "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300";
       default:
         return "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300";
     }
@@ -41,7 +43,7 @@ const StatusBadge = ({ status }) => {
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth={2}
-              d="M12 6v6l4 2"
+              d="M18.5 4h-13m13 16h-13M8 20v-3.333a2 2 0 0 1 .4-1.2L10 12.6a1 1 0 0 0 0-1.2L8.4 8.533a2 2 0 0 1-.4-1.2V4h8v3.333a2 2 0 0 1-.4 1.2L13.957 11.4a1 1 0 0 0 0 1.2l1.643 2.867a2 2 0 0 1 .4 1.2V20H8Z"
             />
           </svg>
         );
@@ -178,7 +180,26 @@ const StatusBadge = ({ status }) => {
             />
           </svg>
         );
-      default:
+      case "declined":
+        return (
+          <svg
+            className="me-1 h-3 w-3"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width={24}
+            height={24}
+            fill="none"
+            viewBox="0 0 24 24">
+            <path
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+        );
+        default:
         return (
           <svg
             className="me-1 h-3 w-3"

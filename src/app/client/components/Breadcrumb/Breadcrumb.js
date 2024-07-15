@@ -5,6 +5,7 @@ import Link from "next/link";
 export default function Breadcrumb() {
   const pathname = usePathname();
   // Split the pathname and filter out the "client" segment
+  if (pathname === "/") return null;
   const pathnames = pathname
     .split("/")
     .filter((x) => x && x !== "client" && x !== "pages");

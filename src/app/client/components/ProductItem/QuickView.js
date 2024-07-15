@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useAppDispatch } from "@/lib/hooks";
+import toast from "react-hot-toast";
 import {
   addItem,
   increaseItemQuantity,
@@ -9,6 +10,7 @@ import {
 import { createWishlist } from "@/utils/wishlistService";
 import { useAppSelector } from "@/lib/hooks";
 export default function QuickView({ product, isOpen, onClose }) {
+  const user = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
   const quantity =
     useAppSelector((state) =>
@@ -31,10 +33,15 @@ export default function QuickView({ product, isOpen, onClose }) {
       </div>
     );
   }
-
+  function handlewishlist() {
+    if (!user) return toast.error("Please login to add to wishlist");
+    createWishlist(user._id, product._id).then((data) => {
+      toast.success("added to wishlist successfully");
+    });
+  }
   return (
     <div className="fixed top-0 left-0 inset-0 z-50 flex items-center   justify-center h-screen w-screen p-4 overflow-hidden bg-black bg-opacity-50 ">
-      <div className="relative bg-white rounded-lg shadow-lg w-full sm:w-3/4 max-h-[80vh] overflow-y-auto  mx-auto p-6">
+      <div className="relative bg-white rounded-lg shadow-lg w-full sm:w-3/4 max-h-[80vh] overflow-y-auto sm:overflow-y-visible  mx-auto p-6">
         <button
           className="absolute top-4 right-4  text-gray-600 hover:text-gray-900"
           onClick={onClose}>
@@ -114,9 +121,7 @@ export default function QuickView({ product, isOpen, onClose }) {
                   />
                 </svg>
 
-                <span
-                  className="hidden sm:block"
-                  onClick={() => createWishlist(product._id, user._id)}>
+                <span className="hidden sm:block" onClick={handlewishlist}>
                   Add to favorites
                 </span>
               </button>
@@ -150,7 +155,7 @@ export default function QuickView({ product, isOpen, onClose }) {
                 </div>
                 <div className="flex flex-row h-10 ms-auto">
                   <button
-                    className="inline-flex relative items-center rounded-lg mt-auto bg-gray-950 px-3 py-2.5 overflow-hidden border border-red-400 bg-white text-red-400 shadow-md transition-all before:absolute before:left-0 before:top-0 before:h-full before:w-0 before:duration-500 after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:duration-500 hover:text-white hover:shadow-red-400 hover:before:w-2/4 hover:before:bg-red-400 hover:after:w-2/4 hover:after:bg-red-400"
+                    className="inline-flex relative items-center rounded-lg mt-auto bg-gray-950 px-3 py-2 overflow-hidden border border-red-400 bg-white text-red-400 shadow-md transition-all before:absolute before:left-0 before:top-0 before:h-full before:w-0 before:duration-500 after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:duration-500 hover:text-white hover:shadow-red-400 hover:before:w-2/4 hover:before:bg-red-400 hover:after:w-2/4 hover:after:bg-red-400"
                     onClick={() => dispatch(addItem(product))}>
                     <svg
                       className="-ms-1 me-2 z-10  h-5 w-5"

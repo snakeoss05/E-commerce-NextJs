@@ -28,7 +28,7 @@ export default function Carousel() {
   }, [nextSlide]);
 
   return (
-    <div className="relative w-full mx-auto overflow-hidden ">
+    <div className="relative w-full overflow-hidden ">
       <div className="overflow-hidden rounded-lg shadow-lg w-full h-full">
         <Image
           src={images[currentIndex]}

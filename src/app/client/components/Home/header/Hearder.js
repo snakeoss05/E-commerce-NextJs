@@ -4,8 +4,9 @@ import Link from "next/link";
 
 export default function Hearder() {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-6 ">
-      <div className="col-span-2  lg:mx-auto p-4  lg:p-4 lg:border-r border-gray-200 lg:pe-8">
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-16 items-center justify-center">
+      <div className="col-span-1"></div>
+      <div className=" col-span-12 sm:col-span-3   p-4  lg:border-r border-gray-200 lg:px-8">
         <ul className="grid grid-cols-1 gap-4 relative">
           <li>
             <Link
@@ -269,7 +270,7 @@ export default function Hearder() {
           </li>
         </ul>
       </div>
-      <div className="col-span-4 my-4 ">
+      <div className="col-span-12 sm:col-span-7 flex flex-col  justify-center items-start ">
         <Carousel />
       </div>
     </div>

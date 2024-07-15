@@ -22,7 +22,7 @@ export default function SignIn() {
     setLoading(true);
     try {
       const response = await axios.post(
-        "https://e-commerce-backend-dvaf.onrender.com/api/auth/login",
+        "http://192.168.1.2:3001/api/auth/login",
         logform
       );
       const { token, user } = response.data;

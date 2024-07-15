@@ -46,8 +46,8 @@ export default function MyOrder() {
     setSelectedOrder(null);
   }
   return (
-    <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
-      <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
+    <section className="bg-white py-8 antialiased dark:bg-gray-900 ">
+      <div className="me-auto max-w-screen-xl px-4 ">
         <div className="mx-auto max-w-5xl">
           <div className="gap-4 sm:flex sm:items-center sm:justify-between">
             <h2 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
@@ -112,10 +112,8 @@ export default function MyOrder() {
                       <dt className="text-base font-medium text-gray-500 dark:text-gray-400">
                         Order ID:
                       </dt>
-                      <dd className="mt-1.5 text-base  w-16 overflow-hidden text-ellipsis font-semibold text-gray-900 dark:text-white">
-                        <a href="#" className="hover:underline">
-                          #{order._id}
-                        </a>
+                      <dd className="mt-1.5 text-base   font-semibold text-gray-900 dark:text-white">
+                        #{order.orderId}
                       </dd>
                     </dl>
                     <dl className="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1">
@@ -123,7 +121,7 @@ export default function MyOrder() {
                         Date:
                       </dt>
                       <dd className="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
-                        {new Date(order.createdAt).toLocaleDateString()}
+                        {new Date(order.createdAt).toLocaleString()}
                       </dd>
                     </dl>
                     <dl className="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1">

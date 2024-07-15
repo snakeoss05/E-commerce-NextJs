@@ -10,13 +10,13 @@ export default function FlashSales() {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const targetDate = "2024-07-15T00:00:00";
+  const targetDate = "2024-07-28T00:00:00";
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const res = await axios.get(
-          `https://e-commerce-backend-dvaf.onrender.com/api/products?page=${page}&limit=4&discount=true`
+          `http://192.168.1.2:3001/api/products?page=${page}&limit=4&discount=true`
         );
         setProducts(res.data.data);
         setTotalPages(res.data.totalPages);
@@ -32,7 +32,7 @@ export default function FlashSales() {
         <div className="bg-red-600 h-10 w-8 rounded-lg"></div>
         <span className="text-red-600 font-bold text-lg mt-2">Today's</span>
       </div>
-      <div className="flex flex-col lg:flex-row items-center gap-2 sm:gap-4 ">
+      <div className="flex flex-col lg:flex-row items-center gap-2 sm:gap-16 ">
         <h2 className="text-2xl lg:text-3xl font-bold mb-2 sm:mb-4">
           Flash Sales
         </h2>
