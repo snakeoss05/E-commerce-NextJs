@@ -1,7 +1,7 @@
 export const createAddress = async (address, id) => {
   try {
     const response = await axios.post(
-      `http://192.168.1.2:3001/api/addresses/${id}`,
+      `https://e-commerce-backend-dvaf.onrender.com /api/addresses/${id}`,
       address
     );
     return response.data;
@@ -13,7 +13,7 @@ export const createAddress = async (address, id) => {
 export const deleteAddress = async () => {
   try {
     const response = await axios.delete(
-      `http://192.168.1.2:3001/api/addresses/${user._id}`
+      `https://e-commerce-backend-dvaf.onrender.com /api/addresses/${user._id}`
     );
     return response.data;
   } catch (err) {
@@ -24,7 +24,7 @@ export const deleteAddress = async () => {
 export const getAddresses = async (id) => {
   try {
     const response = await axios.get(
-      `http://192.168.1.2:3001/api/addresses/${id}`
+      `https://e-commerce-backend-dvaf.onrender.com /api/addresses/${id}`
     );
     return response.data;
   } catch (err) {

@@ -14,7 +14,7 @@ export default function ProductCart({
     if (!user) return toast.error("Please login to add to wishlist");
     try {
       const response = await axios.post(
-        `http://192.168.1.2:3001/api/wishlist/${id}`
+        `https://e-commerce-backend-dvaf.onrender.com /api/wishlist/${id}`
       );
       console.log(response.data);
     } catch (error) {

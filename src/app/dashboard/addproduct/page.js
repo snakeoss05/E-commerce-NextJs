@@ -49,10 +49,13 @@ const AddProductForm = () => {
       formData.append("images", form.images[i]);
     }
 
-    const res = await fetch("http://192.168.1.2:3001/api/products", {
-      method: "POST",
-      body: formData,
-    });
+    const res = await fetch(
+      "https://e-commerce-backend-dvaf.onrender.com /api/products",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
 
     if (res.ok) {
       router.push("/"); // Redirect to the homepage or product list

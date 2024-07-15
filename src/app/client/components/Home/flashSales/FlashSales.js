@@ -16,7 +16,7 @@ export default function FlashSales() {
     const fetchProducts = async () => {
       try {
         const res = await axios.get(
-          `http://192.168.1.2:3001/api/products?page=${page}&limit=4&discount=true`
+          `https://e-commerce-backend-dvaf.onrender.com /api/products?page=${page}&limit=4&discount=true`
         );
         setProducts(res.data.data);
         setTotalPages(res.data.totalPages);

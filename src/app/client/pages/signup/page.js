@@ -20,11 +20,11 @@ export default function SignIn() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://192.168.1.2:3001/api/users",
+        "https://e-commerce-backend-dvaf.onrender.com /api/users",
         register
       );
       const response2 = await axios.post(
-        "http://192.168.1.2:3001/api/auth/login",
+        "https://e-commerce-backend-dvaf.onrender.com /api/auth/login",
         register
       );
       const { token, user } = response2.data;

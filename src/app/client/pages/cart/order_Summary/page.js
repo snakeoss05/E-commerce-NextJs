@@ -47,7 +47,7 @@ export default function OrderSummary() {
     };
     try {
       const response = await axios.post(
-        "http://192.168.1.2:3001/api/orders",
+        "https://e-commerce-backend-dvaf.onrender.com /api/orders",
         data
       );
       if (response.status === 201) {

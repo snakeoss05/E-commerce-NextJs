@@ -27,7 +27,7 @@ export default function Product({ params }) {
     if (params.id) {
       const fetchProduct = async () => {
         const response = await axios.get(
-          `http://192.168.1.2:3001/api/products/${params.id}`
+          `https://e-commerce-backend-dvaf.onrender.com /api/products/${params.id}`
         );
         setProduct(response.data.data);
       };
