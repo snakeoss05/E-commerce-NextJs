@@ -13,7 +13,7 @@ export default function BestSales() {
     const fetchProducts = async () => {
       try {
         const res = await axios.get(
-          `https://e-commerce-backend-dvaf.onrender.com /api/products?page=${page}&limit=4`
+          `https://e-commerce-backend-dvaf.onrender.com/api/products?page=${page}&limit=4`
         );
         setProducts(res.data.data);
         setTotalPages(res.data.totalPages);

@@ -50,7 +50,7 @@ const AddProductForm = () => {
     }
 
     const res = await fetch(
-      "https://e-commerce-backend-dvaf.onrender.com /api/products",
+      "https://e-commerce-backend-dvaf.onrender.com/api/products",
       {
         method: "POST",
         body: formData,

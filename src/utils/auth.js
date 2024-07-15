@@ -1,7 +1,7 @@
 export const isAdminRole = async (id) => {
   try {
     const response = await fetch(
-      `https://e-commerce-backend-dvaf.onrender.com /api/profile/${id}`,
+      `https://e-commerce-backend-dvaf.onrender.com/api/profile/${id}`,
       {
         method: "GET",
         headers: {

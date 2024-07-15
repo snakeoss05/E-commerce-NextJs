@@ -1,7 +1,7 @@
 export const getWishlistById = async (id) => {
   try {
     const response = await fetch(
-      `https://e-commerce-backend-dvaf.onrender.com /api/wishlist/${id}`
+      `https://e-commerce-backend-dvaf.onrender.com/api/wishlist/${id}`
     );
     const data = await response.json();
     return data;
@@ -15,7 +15,7 @@ export const createWishlist = async (productId, id) => {
   if (!id) return;
   try {
     const response = await fetch(
-      `https://e-commerce-backend-dvaf.onrender.com /api/wishlist/${id}`,
+      `https://e-commerce-backend-dvaf.onrender.com/api/wishlist/${id}`,
       {
         method: "POST",
         headers: {
@@ -35,7 +35,7 @@ export const createWishlist = async (productId, id) => {
 export const updateWishlistById = async (id, updateData) => {
   try {
     const response = await fetch(
-      `https://e-commerce-backend-dvaf.onrender.com /api/wishlist/${id}`,
+      `https://e-commerce-backend-dvaf.onrender.com/api/wishlist/${id}`,
       {
         method: "PUT",
         headers: {
@@ -56,7 +56,7 @@ export const updateWishlistById = async (id, updateData) => {
 export const deleteWishlistById = async (id) => {
   try {
     const response = await fetch(
-      `https://e-commerce-backend-dvaf.onrender.com /api/wishlist/${id}`,
+      `https://e-commerce-backend-dvaf.onrender.com/api/wishlist/${id}`,
       {
         method: "DELETE",
       }

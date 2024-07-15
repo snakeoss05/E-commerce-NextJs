@@ -27,7 +27,7 @@ export default function Product({ params }) {
     if (params.id) {
       const fetchProduct = async () => {
         const response = await axios.get(
-          `https://e-commerce-backend-dvaf.onrender.com /api/products/${params.id}`
+          `https://e-commerce-backend-dvaf.onrender.com/api/products/${params.id}`
         );
         setProduct(response.data.data);
       };

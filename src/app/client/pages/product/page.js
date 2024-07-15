@@ -46,7 +46,7 @@ export default function Products() {
 
       try {
         const res = await axios.get(
-          `https://e-commerce-backend-dvaf.onrender.com /api/products?page=${page}&limit=8&${queryParams.toString()}`
+          `https://e-commerce-backend-dvaf.onrender.com/api/products?page=${page}&limit=8&${queryParams.toString()}`
         );
         setProducts(res.data.data);
         setTotalPages(res.data.totalPages);
@@ -60,7 +60,7 @@ export default function Products() {
   }, [page, discount, category, minPrice, maxPrice, stock, mark]);
   const handleDelete = async (id) => {
     const res = await fetch(
-      `https://e-commerce-backend-dvaf.onrender.com /api/products/${id}`,
+      `https://e-commerce-backend-dvaf.onrender.com/api/products/${id}`,
       {
         method: "DELETE",
       }

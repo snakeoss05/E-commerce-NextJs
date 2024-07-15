@@ -32,7 +32,7 @@ export default function AccountDetails() {
 
     try {
       const response = await axios.put(
-        "https://e-commerce-backend-dvaf.onrender.com /api/profile/update",
+        "https://e-commerce-backend-dvaf.onrender.com/api/profile/update",
         updateFields,
         {
           headers: {

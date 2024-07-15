@@ -1,7 +1,7 @@
 export const createOrder = async (orderData) => {
   try {
     const response = await fetch(
-      "https://e-commerce-backend-dvaf.onrender.com /api/orders",
+      "https://e-commerce-backend-dvaf.onrender.com/api/orders",
       {
         method: "POST",
         headers: {
@@ -21,7 +21,7 @@ export const createOrder = async (orderData) => {
 export const getOrdersById = async (orderId, page) => {
   try {
     const response = await fetch(
-      `https://e-commerce-backend-dvaf.onrender.com /api/orders/${orderId}?page=${page}&limit=8`,
+      `https://e-commerce-backend-dvaf.onrender.com/api/orders/${orderId}?page=${page}&limit=8`,
       {
         method: "GET",
         headers: {
@@ -39,7 +39,7 @@ export const getOrdersById = async (orderId, page) => {
 export const DeleteOrder = async (orderId) => {
   try {
     const response = await fetch(
-      `https://e-commerce-backend-dvaf.onrender.com /api/orders/${orderId}`,
+      `https://e-commerce-backend-dvaf.onrender.com/api/orders/${orderId}`,
       {
         method: "DELETE",
         headers: {
@@ -57,7 +57,7 @@ export const DeleteOrder = async (orderId) => {
 export const getOrdersProducts = async (orderId) => {
   try {
     const response = await fetch(
-      `https://e-commerce-backend-dvaf.onrender.com /api/orders/getOrderProducts/${orderId}`,
+      `https://e-commerce-backend-dvaf.onrender.com/api/orders/getOrderProducts/${orderId}`,
       {
         method: "GET",
         headers: {
@@ -75,7 +75,7 @@ export const getOrdersProducts = async (orderId) => {
 export const getOrdersByOderId = async (orderId) => {
   try {
     const response = await fetch(
-      `https://e-commerce-backend-dvaf.onrender.com /api/orders/getOrderByOderId/${orderId}`,
+      `https://e-commerce-backend-dvaf.onrender.com/api/orders/getOrderByOderId/${orderId}`,
       {
         method: "GET",
         headers: {
@@ -93,7 +93,7 @@ export const getOrdersByOderId = async (orderId) => {
 export const getOrders = async (page) => {
   try {
     const response = await fetch(
-      `https://e-commerce-backend-dvaf.onrender.com /api/orders?page=${page}&limit=8`,
+      `https://e-commerce-backend-dvaf.onrender.com/api/orders?page=${page}&limit=8`,
       {
         method: "GET",
         headers: {
@@ -112,7 +112,7 @@ export const getOrders = async (page) => {
 export const updateOrderStatus = async (orderId, orderData) => {
   try {
     const response = await fetch(
-      `https://e-commerce-backend-dvaf.onrender.com /api/orders/${orderId}`,
+      `https://e-commerce-backend-dvaf.onrender.com/api/orders/${orderId}`,
       {
         method: "PUT",
         headers: {
@@ -131,7 +131,7 @@ export const updateOrderStatus = async (orderId, orderData) => {
 export const generateInvoice = async (orderId) => {
   try {
     const response = await fetch(
-      `https://e-commerce-backend-dvaf.onrender.com /api/orders/generateInvoice/${orderId}`,
+      `https://e-commerce-backend-dvaf.onrender.com/api/orders/generateInvoice/${orderId}`,
       {
         method: "GET",
         headers: {
