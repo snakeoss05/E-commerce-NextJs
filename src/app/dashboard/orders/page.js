@@ -7,33 +7,36 @@ import {
   getOrdersByOderId,
   generateInvoice,
 } from "@/utils/orderService";
+import { useRouter } from "next/navigation";
 import { useAppSelector } from "@/lib/hooks";
 import StatusBadge from "@/app/client/pages/myaccount/myorder/Status";
 import Pagination from "@/app/client/components/Pagination/Pagination";
 import toast from "react-hot-toast";
+
 import OrderDetails from "@/app/client/pages/myaccount/myorder/OrderDetails";
 
 export default function MyOrder() {
   const user = useAppSelector((state) => state.auth.user);
+  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [orders, setOrders] = useState([]);
   const [page, setPage] = useState(1);
   const [OrderIdInput, setOrderIdInput] = useState("");
+  const [status, setStatus] = useState("");
+  const [orderDate, setOrderDate] = useState("");
   const [selectedOrder, setSelectedOrder] = useState(null);
-
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
-  const printRef = useRef();
 
   useEffect(() => {
     if (user) {
-      getOrders(page).then((data) => {
+      getOrders(page, orderDate, status).then((data) => {
         setOrders(data.data);
         setTotalPages(data.totalPages);
         setLoading(false);
       });
     }
-  }, [user, page]);
+  }, [user, page, orderDate, status]);
 
   function handleStatusChange(orderId, status) {
     updateOrderStatus(orderId, status).then((data) => {
@@ -91,7 +94,6 @@ export default function MyOrder() {
                 placeholder="Search By Order Id"
                 className="w-full rounded-md border-gray-200 bg-gray-100 py-1.5 sm:py-2.5 pe-10 ps-4 shadow-sm sm:text-sm focus-visible:outline-none"
               />
-
               <span className="absolute bg-black  rounded-r-lg inset-y-0 end-0 grid w-10 place-content-center">
                 <button id="search" type="button" onClick={handleOrderSearch}>
                   <span className="sr-only">Search</span>
@@ -114,18 +116,43 @@ export default function MyOrder() {
             <div className="mt-6 gap-4 space-y-4 sm:mt-0 sm:flex sm:items-center sm:justify-end sm:space-y-0">
               <div>
                 <label
+                  htmlFor="order-type"
+                  className="sr-only mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+                  Select order type
+                </label>
+                <select
+                  id="order-type"
+                  onChange={(e) => setStatus(e.target.value)}
+                  className="block w-full min-w-[8rem] rounded-lg border capitalize border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500">
+                  <option defaultValue>All orders</option>
+                  <option value="pending">pending</option>
+                  <option value="confirmed">confirmed</option>
+                  <option value="declined">declined</option>
+                  <option value="processing">processing</option>
+                  <option value="shipped">shipped</option>
+                  <option value="delivered">delivered</option>
+                  <option value="cancelled">cancelled</option>
+                  <option value="returned">returned</option>
+                </select>
+              </div>
+              <span className="inline-block text-gray-500 dark:text-gray-400">
+                {" "}
+                from{" "}
+              </span>
+              <div>
+                <label
                   htmlFor="duration"
                   className="sr-only mb-2 block text-sm font-medium text-gray-900 dark:text-white">
                   Select duration
                 </label>
                 <select
                   id="duration"
+                  onChange={(e) => setOrderDate(e.target.value)}
                   className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500">
                   <option defaultValue>this week</option>
-                  <option value="this month">this month</option>
-                  <option value="last 3 months">the last 3 months</option>
-                  <option value="lats 6 months">the last 6 months</option>
-                  <option value="this year">this year</option>
+                  <option value="today">today</option>
+                  <option value="this_week">this week</option>
+                  <option value="this_month">this month</option>
                 </select>
               </div>
             </div>
@@ -203,6 +230,7 @@ export default function MyOrder() {
                           <td className="whitespace-nowrap px-4 py-2 w-40">
                             <StatusBadge status={order.status} />
                           </td>
+
                           <td className="whitespace-nowrap px-4 py-2 flex items-center justify-center flex-row gap-4 ">
                             <svg
                               className="h-6 w-6 text-red-500 transition cursor-pointer duration-200 ease-in hover:scale-125"
@@ -254,7 +282,11 @@ export default function MyOrder() {
                               className="h-6 w-6 transition cursor-pointer duration-200 
                               ease-in hover:scale-125"
                               viewBox="0 0 24 24"
-                              onClick={() => generateInvoice(order._id)}
+                              onClick={() =>
+                                router.push(
+                                  `/dashboard/invoice/${order.orderId}`
+                                )
+                              }
                               fill="none"
                               xmlns="http://www.w3.org/2000/svg">
                               <g id="SVGRepo_bgCarrier" strokeWidth={0} />
@@ -348,6 +380,7 @@ export default function MyOrder() {
                               </g>
                             </svg>
                           </td>
+                          <td></td>
                         </tr>
                       ))}
                   </tbody>

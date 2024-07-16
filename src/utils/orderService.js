@@ -90,10 +90,10 @@ export const getOrdersByOderId = async (orderId) => {
     throw error;
   }
 };
-export const getOrders = async (page) => {
+export const getOrders = async (page, orderDate, status) => {
   try {
     const response = await fetch(
-      `https://e-commerce-backend-dvaf.onrender.com/api/orders?page=${page}&limit=8`,
+      `https://e-commerce-backend-dvaf.onrender.com/api/orders?page=${page}&limit=8&orderDate=${orderDate}&status=${status}`,
       {
         method: "GET",
         headers: {

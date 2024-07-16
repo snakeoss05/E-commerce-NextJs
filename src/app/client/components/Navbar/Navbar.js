@@ -37,7 +37,7 @@ export default function Navbar() {
 
           <div className="hidden lg:block mx-auto lg:ms-auto lg:me-32">
             <nav aria-label="Global">
-              <ul className="flex items-center gap-6 text-sm">
+              <ul className="flex items-center gap-8 text-sm">
                 <li>
                   <Link
                     href="/"

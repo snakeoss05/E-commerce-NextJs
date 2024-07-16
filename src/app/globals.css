@@ -57,3 +57,11 @@ body {
     width: 100%;
   }
 }
+.mySwiper .swiper-button-next,
+.mySwiper .swiper-button-prev {
+  display: none;
+}
+
+.mySwiper .swiper-pagination {
+  display: none;
+}

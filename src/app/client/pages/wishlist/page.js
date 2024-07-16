@@ -39,7 +39,7 @@ export default function WhishList() {
 
   return (
     <div className="px-4 py-8 lg:px-32 lg:py-12 space-y-6">
-      <div className="flex justify-between flex-row">
+      <div className="flex justify-between flex-col  gap-4 sm:flex-row">
         <h1 className="text-lg md:text-2xl mt-2">
           WhishList ({products.length})
         </h1>
