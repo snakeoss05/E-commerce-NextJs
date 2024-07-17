@@ -76,8 +76,10 @@ const AddProductForm = () => {
   return (
     <div className="max-w-2xl mx-auto p-6 m-8 bg-white rounded-lg shadow">
       <h2 className="text-2xl font-semibold mb-6">Add New Product</h2>
-      <form onSubmit={handleSubmit} className="grid grid-cols-4 gap-4">
-        <div className=" col-span-2">
+      <form
+        onSubmit={handleSubmit}
+        className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+        <div className=" sm:col-span-2">
           <label className="block text-sm font-medium text-gray-700">
             Name
           </label>
@@ -90,7 +92,7 @@ const AddProductForm = () => {
             required
           />
         </div>
-        <div className=" col-span-1">
+        <div className=" sm:col-span-1">
           <label className="block text-sm font-medium text-gray-700">
             Price
           </label>
@@ -103,7 +105,7 @@ const AddProductForm = () => {
             required
           />
         </div>
-        <div className=" col-span-1">
+        <div className=" sm:col-span-1">
           <label className="block text-sm font-medium text-gray-700">
             Mark
           </label>
@@ -116,7 +118,7 @@ const AddProductForm = () => {
             required
           />
         </div>
-        <div className="  col-span-4">
+        <div className="  sm:col-span-4">
           <label className="block text-sm font-medium text-gray-700">
             Description
           </label>
@@ -129,7 +131,7 @@ const AddProductForm = () => {
           />
         </div>
 
-        <div className="col-span-4">
+        <div className="sm:col-span-4">
           <label className="block text-sm font-medium text-gray-700">
             Product Images{" "}
             <span className="text-xs text-gray-500">(4 max)</span>
@@ -166,7 +168,7 @@ const AddProductForm = () => {
             ))}
           </div>
         </div>
-        <div className="col-span-2">
+        <div className="sm:col-span-2">
           <label className="block text-sm font-medium text-gray-700">
             Category
           </label>
@@ -179,7 +181,7 @@ const AddProductForm = () => {
             required
           />
         </div>
-        <div className="col-span-1">
+        <div className="sm:col-span-1">
           <label className="block text-sm font-medium text-gray-700">
             Discount
           </label>
@@ -192,7 +194,7 @@ const AddProductForm = () => {
           />
         </div>
 
-        <div className="col-span-1">
+        <div className="sm:col-span-1">
           <label className="block text-sm font-medium text-gray-700">
             Stock
           </label>
@@ -205,7 +207,7 @@ const AddProductForm = () => {
             required
           />
         </div>
-        <div className="col-span-4 flex justify-center">
+        <div className="sm:col-span-4 flex justify-center">
           <button
             type="submit"
             className="block  mx-auto  w-full mt-4 justify-center py-3 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">

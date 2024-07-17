@@ -78,7 +78,7 @@ export default function MyOrder() {
       <div className="me-auto max-w-screen-xl px-4 ">
         <div className="mx-auto max-w-7xl">
           <div className="gap-4 sm:flex sm:items-center sm:justify-between">
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
+            <h2 className="text-xl mb-4 font-semibold text-gray-900 dark:text-white sm:text-2xl">
               Orders List
             </h2>
             <div className="ms-auto relative">

@@ -6,7 +6,7 @@ export default function Hearder() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-16 items-center justify-center">
       <div className="col-span-1"></div>
-      <div className=" col-span-12 sm:col-span-3   p-4  lg:border-r border-gray-200 lg:px-16">
+      <div className=" col-span-12 sm:col-span-3   px-4 sm:py-4 lg:border-r border-gray-200 lg:px-16">
         <ul className="grid grid-cols-1 gap-4 relative">
           <li>
             <Link

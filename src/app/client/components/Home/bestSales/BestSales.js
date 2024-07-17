@@ -30,10 +30,10 @@ export default function BestSales() {
         <span className="text-red-600 font-bold text-lg mt-2">This Month</span>
       </div>
       <div className="flex flex-row justify-between items-center">
-        <h1 className="text-3xl font-bold">Best Selling Products</h1>
+        <h1 className="text-lg sm:text-3xl font-bold">Best Selling Products</h1>
         <button
           id="viewAll"
-          className="bg-red-600 text-white font-bold py-4 px-8 rounded-lg hover:bg-red-700">
+          className="bg-red-600 text-white font-bold py-2.5 sm:py-4 px-4 sm:px-8 rounded-lg hover:bg-red-700">
           View All Products
         </button>
       </div>

@@ -1,8 +1,8 @@
-// app/invoice/[orderId]/page.js
 "use client";
 import React, { useEffect, useState, useRef } from "react";
 import { getOrdersByOderId } from "@/utils/orderService";
 import jsPDF from "jspdf";
+import Image from "next/image";
 import html2canvas from "html2canvas";
 
 export default function Invoice({ params }) {
@@ -54,7 +54,13 @@ export default function Invoice({ params }) {
       <div className="flex justify-between flex-row">
         {" "}
         <h1 className="text-2xl font-bold mb-4">Invoice</h1>
-        <img src="/images/logo.AVIF" alt="logo" className="w-20 h-20" />
+        <Image
+          src="/images/logo.AVIF"
+          width={100}
+          height={100}
+          alt="logo"
+          className="w-20 h-20"
+        />
       </div>
 
       <p className="mb-2">

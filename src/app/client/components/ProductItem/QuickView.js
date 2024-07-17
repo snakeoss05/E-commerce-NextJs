@@ -10,12 +10,14 @@ import {
 import { createWishlist } from "@/utils/wishlistService";
 import { useAppSelector } from "@/lib/hooks";
 export default function QuickView({ product, isOpen, onClose }) {
+  if (!product) return null;
   const user = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
+
   const quantity =
     useAppSelector((state) =>
       state.cart.items.map((item) =>
-        item.id === product._id ? item.quantity : 0
+        item.id === product._id || product.id ? item.quantity : 0
       )
     ) || 0;
   if (!isOpen) return null;

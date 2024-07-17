@@ -50,11 +50,11 @@ export default function FlashSales() {
         <span className="text-red-600 font-bold text-lg mt-2">Today's</span>
       </div>
       <div className="flex flex-col lg:flex-row items-center gap-2 sm:gap-16 ">
-        <h2 className="text-2xl lg:text-3xl font-bold mb-2 sm:mb-4">
+        <h2 className="text-2xl text-nowrap lg:text-3xl font-bold mb-2 sm:mb-4">
           Flash Sales
         </h2>
         <Countdown targetDate={targetDate} />
-        <div className="flex flex-row gap-4 items-center ms-auto me-4">
+        <div className="flex flex-row gap-4 justify-between sm:justify-end items-center w-full px-2">
           <svg
             className="cursor-pointer bg-gray-100 p-2 h-12 w-12 text-gray-600 transition  rounded-full hover:bg-gray-200"
             viewBox="0 0 24 24"
