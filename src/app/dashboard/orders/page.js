@@ -41,7 +41,7 @@ export default function MyOrder() {
   function handleStatusChange(orderId, status) {
     updateOrderStatus(orderId, status).then((data) => {
       if (data) {
-        getOrders(page).then((data) => {
+        getOrders(page, orderDate, status).then((data) => {
           setOrders(data.data);
           setTotalPages(data.totalPages);
           setLoading(false);
@@ -53,7 +53,7 @@ export default function MyOrder() {
   function handleDelete(orderId) {
     DeleteOrder(orderId).then((data) => {
       if (data) {
-        getOrders(page).then((data) => {
+        getOrders(page, orderDate, status).then((data) => {
           setOrders(data.data);
           setTotalPages(data.totalPages);
           setLoading(false);

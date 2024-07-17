@@ -12,16 +12,15 @@ import { useAppSelector } from "@/lib/hooks";
 export default function QuickView({ product, isOpen, onClose }) {
   const user = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
+  const cartItems = useAppSelector((state) => state.cart.items);
   const [quantity, setQuantity] = useState(0);
-  if (product) {
-    const quantity =
-      useAppSelector((state) =>
-        state.cart.items.map((item) =>
-          item.id === product._id ? item.quantity : 0
-        )
-      ) || 0;
-    setQuantity(quantity);
-  }
+
+  useEffect(() => {
+    if (product) {
+      const item = cartItems.find((item) => item.id === product._id);
+      setQuantity(item ? item.quantity : 0);
+    }
+  }, [product, cartItems]);
 
   function handlewishlist() {
     if (!user) return toast.error("Please login to add to wishlist");
@@ -29,7 +28,9 @@ export default function QuickView({ product, isOpen, onClose }) {
       toast.success("added to wishlist successfully");
     });
   }
+
   if (!isOpen) return null;
+
   if (!product) {
     return (
       <div className="relative flex justify-center items-center py-8 h-screen w-screen">
