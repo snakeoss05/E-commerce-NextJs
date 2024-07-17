@@ -12,13 +12,16 @@ import { useAppSelector } from "@/lib/hooks";
 export default function QuickView({ product, isOpen, onClose }) {
   const user = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
-
-  const quantity =
-    useAppSelector((state) =>
-      state.cart.items.map((item) =>
-        item.id === product._id || product.id ? item.quantity : 0
-      )
-    ) || 0;
+  const [quantity, setQuantity] = useState(0);
+  if (product) {
+    const quantity =
+      useAppSelector((state) =>
+        state.cart.items.map((item) =>
+          item.id === product._id ? item.quantity : 0
+        )
+      ) || 0;
+    setQuantity(quantity);
+  }
 
   function handlewishlist() {
     if (!user) return toast.error("Please login to add to wishlist");
