@@ -10,7 +10,6 @@ import {
 import { createWishlist } from "@/utils/wishlistService";
 import { useAppSelector } from "@/lib/hooks";
 export default function QuickView({ product, isOpen, onClose }) {
-  if (!product) return null;
   const user = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
 
@@ -20,6 +19,13 @@ export default function QuickView({ product, isOpen, onClose }) {
         item.id === product._id || product.id ? item.quantity : 0
       )
     ) || 0;
+
+  function handlewishlist() {
+    if (!user) return toast.error("Please login to add to wishlist");
+    createWishlist(user._id, product._id).then((data) => {
+      toast.success("added to wishlist successfully");
+    });
+  }
   if (!isOpen) return null;
   if (!product) {
     return (
@@ -34,12 +40,6 @@ export default function QuickView({ product, isOpen, onClose }) {
         />
       </div>
     );
-  }
-  function handlewishlist() {
-    if (!user) return toast.error("Please login to add to wishlist");
-    createWishlist(user._id, product._id).then((data) => {
-      toast.success("added to wishlist successfully");
-    });
   }
   return (
     <div
