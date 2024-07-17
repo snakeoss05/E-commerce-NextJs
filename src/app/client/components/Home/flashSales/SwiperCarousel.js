@@ -9,8 +9,7 @@ import "swiper/css/pagination";
 
 import ProductItem from "../../ProductItem/ProductItem";
 
-const ProductCarousel = ({ products, slideNext, slidePrev }) => {
-    
+const ProductCarousel = ({ products }) => {
   return (
     <Swiper
       modules={[Navigation]}
@@ -39,7 +38,7 @@ const ProductCarousel = ({ products, slideNext, slidePrev }) => {
       navigation>
       {products.map((product) => (
         <SwiperSlide key={product._id}>
-          <ProductItem product={product} key={product._id} />
+          <ProductItem product={product} key={product._id} quickView={false} />
         </SwiperSlide>
       ))}
     </Swiper>

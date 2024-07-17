@@ -17,6 +17,7 @@ export default function Filter({
       setStock("");
     }
   }
+
   return (
     <div>
       <div className="space-y-2">

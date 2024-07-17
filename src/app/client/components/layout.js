@@ -3,6 +3,7 @@ import Footer from "./footer/Footer";
 import Breadcrumb from "./Breadcrumb/Breadcrumb";
 import TopBanner from "./topBanner/TopBanner";
 import ShopCart from "./shopCart/ShopCart";
+import QuickView from "./ProductItem/QuickView";
 
 export default function Layout({ children }) {
   return (
@@ -11,6 +12,7 @@ export default function Layout({ children }) {
       <ShopCart />
       <Navbar />
       <Breadcrumb />
+      <QuickView />
       <main className="px-8">{children}</main>
       <Footer />
     </div>

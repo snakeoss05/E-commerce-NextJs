@@ -40,7 +40,9 @@ export default function QuickView({ product, isOpen, onClose }) {
     });
   }
   return (
-    <div className="fixed top-0 left-0 inset-0 z-50 flex items-center   justify-center h-screen w-screen p-4 overflow-hidden bg-black bg-opacity-50 ">
+    <div
+      className="fixed top-0 left-0 flex items-center   justify-center h-screen w-screen p-4 overflow-hidden bg-black bg-opacity-50 "
+      style={{ zIndex: 9999 }}>
       <div className="relative bg-white rounded-lg shadow-lg w-full sm:w-3/4 max-h-[80vh] overflow-y-auto sm:overflow-y-visible  mx-auto p-6">
         <button
           className="absolute top-4 right-4  text-gray-600 hover:text-gray-900"

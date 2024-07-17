@@ -9,6 +9,9 @@ export default function SideBarDashBord() {
           <li className="hover:text-blue-600">
             <Link href="/dashboard/addproduct">Add Product</Link>
           </li>
+          <li className="hover:text-blue-600">
+            <Link href="/dashboard/updateproduct">Update Product</Link>
+          </li>
         </ul>
         <p className="text-1xl font-bold">Manage Orders</p>
         <ul className="mt-4 space-y-2 ps-8 text-base text-gray-500 dark:text-gray-400">

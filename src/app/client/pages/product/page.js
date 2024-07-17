@@ -50,6 +50,7 @@ export default function Products() {
         );
         setProducts(res.data.data);
         setTotalPages(res.data.totalPages);
+
         setMarkList(...new Set(response.data.data.map((item) => item.mark)));
       } catch (error) {
         console.log(error);

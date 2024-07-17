@@ -113,7 +113,7 @@ export default function FlashSales() {
         navigation>
         {products.map((product) => (
           <SwiperSlide key={product._id}>
-            <ProductItem product={product} key={product._id} />
+            <ProductItem product={product} key={product._id} quickView={true} />
           </SwiperSlide>
         ))}
       </Swiper>

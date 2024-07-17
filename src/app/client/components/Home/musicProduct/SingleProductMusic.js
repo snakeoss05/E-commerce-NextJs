@@ -2,7 +2,7 @@ import React from "react";
 import Countdown from "../flashSales/Countdown";
 import Image from "next/image";
 export default function SingleProductMusic() {
-  const targetDate = "2024-07-15T00:00:00";
+  const targetDate = "2024-07-19T00:00:00";
   return (
     <div className="px-2 lg:block py-8 px-4 lg:p-16 h-[500px] bg-gray-900  rounded-lg relative w-full lg:w-11/12 mx-auto my-8 lg:my-12">
       <div className="flex flex-col-reverse lg:flex-row gap-8">
