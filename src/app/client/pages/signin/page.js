@@ -174,7 +174,9 @@ export default function SignIn() {
               </div>
 
               <p className="text-center text-sm text-red-500 ">
-                <Link className="underline ms-2" href="/client/pages/signup">
+                <Link
+                  className="underline ms-2"
+                  href="/client/pages/forgetpassword">
                   Forget Password?
                 </Link>
               </p>

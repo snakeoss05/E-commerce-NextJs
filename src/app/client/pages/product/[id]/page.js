@@ -161,7 +161,7 @@ export default function Product({ params }) {
             </div>
             <div className="flex flex-row h-10 ms-auto">
               <button
-                className="inline-flex relative items-center rounded-lg mt-auto bg-gray-950 px-3 py-1 overflow-hidden border border-red-400 bg-white text-red-400 shadow-md transition-all before:absolute before:left-0 before:top-0 before:h-full before:w-0 before:duration-500 after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:duration-500 hover:text-white hover:shadow-red-400 hover:before:w-2/4 hover:before:bg-red-400 hover:after:w-2/4 hover:after:bg-red-400"
+                className="inline-flex relative items-center rounded-lg mt-auto bg-gray-950 px-3 py-2 overflow-hidden border border-red-400 bg-white text-red-400 shadow-md transition-all before:absolute before:left-0 before:top-0 before:h-full before:w-0 before:duration-500 after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:duration-500 hover:text-white hover:shadow-red-400 hover:before:w-2/4 hover:before:bg-red-400 hover:after:w-2/4 hover:after:bg-red-400"
                 onClick={() => dispatch(addItem(product))}>
                 <svg
                   className="-ms-1 me-2 z-10  h-5 w-5"
