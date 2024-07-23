@@ -17,6 +17,13 @@ export default function Filter({
       setStock("");
     }
   }
+  function handleMArk(e) {
+    if (e.target.checked) {
+      setMark(e.target.value);
+    } else {
+      setMark("");
+    }
+  }
 
   return (
     <div>
@@ -138,7 +145,7 @@ export default function Filter({
             <header className="flex items-center justify-between p-4">
               <span className="text-sm text-gray-700">
                 {" "}
-                The highest price is ${maxPrice}
+                The highest price is TND{maxPrice}
               </span>
 
               <button
@@ -153,7 +160,7 @@ export default function Filter({
                 <label
                   htmlFor="FilterPriceFrom"
                   className="flex items-center gap-2">
-                  <span className="text-sm text-gray-600">$</span>
+                  <span className="text-sm text-gray-600">TND</span>
 
                   <input
                     type="number"
@@ -168,7 +175,7 @@ export default function Filter({
                 <label
                   htmlFor="FilterPriceTo"
                   className="flex items-center gap-2">
-                  <span className="text-sm text-gray-600">$</span>
+                  <span className="text-sm text-gray-600">TND</span>
 
                   <input
                     type="number"
@@ -214,11 +221,12 @@ export default function Filter({
                   <input
                     type="checkbox"
                     id="FilterInStock"
-                    onChange={() => setMark(mark)}
+                    value={mark}
+                    onChange={handleMArk}
                     className="size-5 rounded border-gray-300"
                   />
 
-                  <span className="text-sm font-medium text-gray-700">
+                  <span className="text-sm font-medium capitalize text-gray-700">
                     {mark}
                   </span>
                 </label>

@@ -105,7 +105,7 @@ export default function Hearder() {
               <span>Tablets</span>
             </Link>
           </li>
-          <li className="toggler pe-2">
+          <li>
             <Link
               href={`/client/pages/product?category=gaming`}
               className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row">
@@ -145,23 +145,10 @@ export default function Hearder() {
                 </g>
               </svg>
               <span>Gaming</span>
-
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 256 512"
-                className="w-4 h-4 transition duration-300 ms-auto text-primary-400 transform rotate-90 arrow"
-                width="16px"
-                fill="currentColor"
-                height="16px">
-                <path
-                  fill="currentColor"
-                  d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"
-                />
-              </svg>
             </Link>
             <div className="relative sm:absolute left-0 sm:left-full dropdown transition-all duration-300 ease-in sm:w-0 top-0  z-50 sm:shadow-md rounded h-0  bg-white sm:h-full"></div>
           </li>
-          <li className="pe-2 toggler">
+          <li>
             <Link
               href="/client/pages/product?category=headphones"
               className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row ">
@@ -232,7 +219,7 @@ export default function Hearder() {
               <span>SmartWatch</span>
             </Link>
           </li>
-          <li className="toggler pe-2">
+          <li>
             <Link
               href="/client/pages/product?category=accessories"
               className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row">
@@ -253,18 +240,6 @@ export default function Hearder() {
                 </g>
               </svg>
               <span>Accessories</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 256 512"
-                className="w-4 h-4 transition duration-300 ms-auto text-primary-400 transform rotate-90 arrow"
-                width="16px"
-                fill="currentColor"
-                height="16px">
-                <path
-                  fill="currentColor"
-                  d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"
-                />
-              </svg>
             </Link>
             <div className="relative sm:absolute left-0 sm:left-full dropdown transition-all duration-300 ease-in sm:w-0 top-0  z-50 sm:shadow-md rounded h-0  bg-white sm:h-full"></div>
           </li>

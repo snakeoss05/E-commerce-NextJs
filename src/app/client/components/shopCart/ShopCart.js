@@ -76,6 +76,7 @@ export default function OffcanvasCart() {
         </div>
         <Link
           href="/client/pages/cart/checkout"
+          onClick={() => dispatch(closeCart())}
           className="w-full p-4 bg-blue-500 text-white hover:bg-blue-600 sm:mt-8 block text-center">
           Checkout
         </Link>

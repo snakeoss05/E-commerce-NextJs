@@ -33,8 +33,8 @@ export default function Contact() {
         <div className="mt-6 leading-5">
           Fill out our form and we will contact you within 24 hours.
         </div>
-        <div className="self-start mt-4">Emails: support@exclusive.com</div>
-        <div className="mt-4">Emails: support@exclusive.com</div>
+        <div className="self-start mt-4">Emails: support@electroshop.com</div>
+        <div className="mt-4">Emails: support@electroshop.com</div>
       </div>
       <div className="flex flex-col justify-center px-8 py-10 text-base leading-6 bg-white rounded shadow-sm max-w-[900px] max-md:px-5">
         <div className="flex gap-4 leading-6 text-red-500 max-md:flex-wrap max-md:max-w-full">
