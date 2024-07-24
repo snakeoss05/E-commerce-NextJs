@@ -89,9 +89,9 @@ const ServicesPage = () => {
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1128.9989171854252!2d10.148401994044693!3d36.835502334661655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd3312d9dfed6f%3A0x2b3e065a01842e73!2sEl%20Manar%201%2C%20Tunis!5e0!3m2!1sfr!2stn!4v1721827365722!5m2!1sfr!2stn"
             width="100%"
             height="100%"
-            allowfullscreen=""
+            allowFullScreen=""
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+            referrerPolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </div>

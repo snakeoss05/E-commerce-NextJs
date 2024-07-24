@@ -12,7 +12,6 @@ import { useAppSelector } from "@/lib/hooks";
 import StatusBadge from "@/app/client/pages/myaccount/myorder/Status";
 import Pagination from "@/app/client/components/Pagination/Pagination";
 import toast from "react-hot-toast";
-
 import OrderDetails from "@/app/client/pages/myaccount/myorder/OrderDetails";
 
 export default function MyOrder() {
