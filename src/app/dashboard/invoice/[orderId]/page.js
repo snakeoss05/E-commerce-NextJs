@@ -13,7 +13,6 @@ export default function Invoice({ params }) {
   useEffect(() => {
     getOrdersByOderId(params.orderId).then((data) => {
       setOrder(data.data[0]);
-      console.log(data.data);
     });
   }, [params.orderId]);
 

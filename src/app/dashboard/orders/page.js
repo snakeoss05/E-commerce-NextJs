@@ -16,6 +16,7 @@ import toast from "react-hot-toast";
 import OrderDetails from "@/app/client/pages/myaccount/myorder/OrderDetails";
 
 export default function MyOrder() {
+  const isAuth = useAppSelector((state) => state.auth.token);
   const user = useAppSelector((state) => state.auth.user);
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,14 +30,14 @@ export default function MyOrder() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (user) {
+    if (isAuth) {
       getOrders(page, orderDate, status).then((data) => {
         setOrders(data.data);
         setTotalPages(data.totalPages);
         setLoading(false);
       });
     }
-  }, [user, page, orderDate, status]);
+  }, [isAuth, page, orderDate, status]);
 
   function handleStatusChange(orderId, status) {
     updateOrderStatus(orderId, status).then((data) => {

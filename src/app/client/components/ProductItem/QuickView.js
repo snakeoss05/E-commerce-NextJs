@@ -10,7 +10,7 @@ import {
 import { createWishlist } from "@/utils/wishlistService";
 import { useAppSelector } from "@/lib/hooks";
 export default function QuickView({ product, isOpen, onClose }) {
-  const user = useAppSelector((state) => state.auth.user);
+  const user = useAppSelector((state) => state.auth.token);
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector((state) => state.cart.items);
   const [quantity, setQuantity] = useState(0);

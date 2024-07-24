@@ -8,7 +8,7 @@ import { createWishlist } from "@/utils/wishlistService";
 import Image from "next/image";
 import QuickView from "./QuickView";
 export default function ProductItem({ product, quickView }) {
-  const user = useAppSelector((state) => state.auth.user);
+  const user = useAppSelector((state) => state.auth.token);
   const [isOpen, setisOpen] = useState(false);
   const dispatch = useAppDispatch();
 
@@ -19,10 +19,13 @@ export default function ProductItem({ product, quickView }) {
   };
 
   function handleAddToWishlist() {
-    if (!user) return toast.error("Please login to add to wishlist");
-    createWishlist(product._id, user._id).then((data) => {
-      toast.success("added to wishlist successfully");
-    });
+    if (user) {
+      createWishlist(product._id, user._id).then((data) => {
+        toast.success("added to wishlist successfully");
+      });
+    } else {
+      toast.error("please login first");
+    }
   }
 
   function calculateDiscount(price, discount) {

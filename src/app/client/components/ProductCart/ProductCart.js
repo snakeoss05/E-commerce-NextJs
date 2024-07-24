@@ -16,7 +16,7 @@ export default function ProductCart({
       const response = await axios.post(
         `https://e-commerce-backend-dvaf.onrender.com/api/wishlist/${id}`
       );
-      console.log(response.data);
+      toast.success("added to wishlist successfully");
     } catch (error) {
       console.error(error);
     }

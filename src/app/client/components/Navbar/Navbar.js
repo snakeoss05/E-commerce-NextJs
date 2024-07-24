@@ -56,7 +56,7 @@ export default function Navbar() {
 
                 <li>
                   <Link
-                    href="/about"
+                    href="/client/pages/about"
                     className="text-black font-normal text-[16px] after:w-0 after:h-0.5 after:block after:bg-gray-500 after:content-[''] after:hover:w-full after:bg-gray-700 after:transition-all after:duration-300">
                     About
                   </Link>
@@ -64,7 +64,7 @@ export default function Navbar() {
 
                 <li>
                   <Link
-                    href="/services"
+                    href="/client/pages/services"
                     className="text-black font-normal text-[16px] after:w-0 after:h-0.5 after:block after:bg-gray-500 after:content-[''] after:hover:w-full after:bg-gray-700 after:transition-all after:duration-300">
                     Services
                   </Link>

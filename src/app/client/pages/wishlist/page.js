@@ -7,7 +7,7 @@ import { getWishlistById, deleteWishlistById } from "@/utils/wishlistService";
 
 export default function WhishList() {
   const [products, setProducts] = useState([]);
-  const user = useAppSelector((state) => state.auth.user);
+  const user = useAppSelector((state) => state.auth.token);
 
   useEffect(() => {
     if (user) {

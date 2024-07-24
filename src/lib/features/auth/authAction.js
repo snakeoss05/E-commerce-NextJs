@@ -6,7 +6,7 @@ const initialState = {
   token: typeof window !== "undefined" ? Cookies.get("token") || "" : null,
   user:
     typeof window !== "undefined"
-      ? JSON.parse(localStorage.getItem("user") || "{}")
+      ? JSON.parse(sessionStorage.getItem("user") || "{}")
       : {},
 };
 
@@ -16,20 +16,20 @@ const auth = createSlice({
   reducers: {
     login(state, action) {
       const { token, user } = action.payload;
-      localStorage.setItem("user", JSON.stringify(user));
+      sessionStorage.setItem("user", JSON.stringify(user));
       Cookies.set("token", token);
       state.token = token;
       state.user = user;
     },
     logout(state) {
-      localStorage.removeItem("user");
+      sessionStorage.removeItem("user");
       Cookies.remove("token");
       state.token = null;
       state.user = {};
     },
     updateUser(state, action) {
       const updatedUser = { ...state.user, ...action.payload };
-      localStorage.setItem("user", JSON.stringify(updatedUser));
+      sessionStorage.setItem("user", JSON.stringify(updatedUser));
 
       state.user = updatedUser;
     },

@@ -55,7 +55,6 @@ export default function Products() {
             res.data.data.map((product) => product.mark).filter(Boolean)
           ),
         ]);
-        console.log(MarkList);
       } catch (error) {
         console.log(error);
       }
