@@ -10,8 +10,9 @@ import {
 import { createWishlist } from "@/utils/wishlistService";
 import { useAppSelector } from "@/lib/hooks";
 export default function QuickView({ product, isOpen, onClose }) {
-  const user = useAppSelector((state) => state.auth.token);
   const dispatch = useAppDispatch();
+  const isAuth = useAppSelector((state) => state.auth.token);
+  const user = useAppSelector((state) => state.auth.user);
   const cartItems = useAppSelector((state) => state.cart.items);
   const [quantity, setQuantity] = useState(0);
 
@@ -22,11 +23,14 @@ export default function QuickView({ product, isOpen, onClose }) {
     }
   }, [product, cartItems]);
 
-  function handlewishlist() {
-    if (!user) return toast.error("Please login to add to wishlist");
-    createWishlist(user._id, product._id).then((data) => {
-      toast.success("added to wishlist successfully");
-    });
+  function handleAddToWishlist() {
+    if (isAuth) {
+      createWishlist(product._id, user._id).then((data) => {
+        toast.success("added to wishlist successfully");
+      });
+    } else {
+      toast.error("please login first");
+    }
   }
 
   if (!isOpen) return null;
@@ -129,7 +133,7 @@ export default function QuickView({ product, isOpen, onClose }) {
                   />
                 </svg>
 
-                <span className="hidden sm:block" onClick={handlewishlist}>
+                <span className="hidden sm:block" onClick={handleAddToWishlist}>
                   Add to favorites
                 </span>
               </button>
@@ -166,7 +170,7 @@ export default function QuickView({ product, isOpen, onClose }) {
                     className="inline-flex relative items-center rounded-lg mt-auto bg-gray-950 px-3 py-2 overflow-hidden border border-red-400 bg-white text-red-400 shadow-md transition-all before:absolute before:left-0 before:top-0 before:h-full before:w-0 before:duration-500 after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:duration-500 hover:text-white hover:shadow-red-400 hover:before:w-2/4 hover:before:bg-red-400 hover:after:w-2/4 hover:after:bg-red-400"
                     onClick={() => dispatch(addItem(product))}>
                     <svg
-                      className="-ms-1 me-2 z-10  h-5 w-5"
+                      className="m-auto sm:-ms-1 sm:me-2 z-10  h-5 w-5"
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       width={24}

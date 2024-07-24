@@ -124,8 +124,8 @@ export default function Products() {
           id="dropdownSort1"
           className={`origin-top-left absolute w-40 right-0 mt-2  top-full z-50  rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 transition ease-out duration-300 ${
             isOpen
-              ? " transform h-fit opacity-100 "
-              : "transform h-0 opacity-0 "
+              ? " transform block opacity-100 "
+              : "transform hidden opacity-0 "
           }`}
           data-popper-placement="bottom">
           <ul

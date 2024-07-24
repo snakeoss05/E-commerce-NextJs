@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Countdown from "./Countdown";
 import Link from "next/link";
 import axios from "axios";
+import ProductSkeleton from "../../ProductItem/ProductSkeleton";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -111,11 +112,21 @@ export default function FlashSales() {
         loop={true}
         className="mySwiper"
         navigation>
-        {products.map((product) => (
-          <SwiperSlide key={product._id}>
-            <ProductItem product={product} key={product._id} quickView={true} />
-          </SwiperSlide>
-        ))}
+        {products.length > 0
+          ? products.map((product) => (
+              <SwiperSlide key={product._id}>
+                <ProductItem
+                  product={product}
+                  key={product._id}
+                  quickView={true}
+                />
+              </SwiperSlide>
+            ))
+          : Array.from({ length: 4 }).map((_, index) => (
+              <SwiperSlide key={index}>
+                <ProductSkeleton key={index} />
+              </SwiperSlide>
+            ))}
       </Swiper>
 
       <div>

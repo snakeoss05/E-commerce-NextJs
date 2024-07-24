@@ -26,20 +26,21 @@ export default function SideBar() {
             d="M4 6h16M4 12h16M4 18h16"
           />
         </svg>
-    
       </button>
 
       {isOpen && (
         <div className="fixed inset-0 top-0 left-0 w-screen h-screen  z-50 flex items-center justify-end bg-black bg-opacity-50   mx-auto">
           <div className="w-full grid grid-cols-2  ">
             <ul className="flex flex-col items-start overflow-y-auto h-screen justify-start me-auto items-center gap-4 text-sm bg-white rounded-r-lg  shadow-xl relative h-screen p-6">
-              <Image
-                width={150}
-                height={150}
-                src="/images/logo.AVIF "
-                alt="logo"
-                className="h-16 w-auto"
-              />
+              <Link href="/" onClick={() => setisOpen(false)}>
+                <Image
+                  width={150}
+                  height={150}
+                  src="/images/logo.AVIF "
+                  alt="logo"
+                  className="h-16 w-auto"
+                />
+              </Link>
               <svg
                 className="h-6 w-6 absolute top-6 right-6 cursor-pointer me-auto hover:rotate-90 transition-transform duration-500 ease-in-out"
                 viewBox="0 0 24 24"
@@ -58,7 +59,7 @@ export default function SideBar() {
                   strokeWidth="1.5"
                   strokeLinecap="round"></path>
               </svg>
-              <li className="w-full">
+              <li className="w-full" onClick={() => setisOpen(false)}>
                 <Link
                   href={`/client/pages/product?category=phones`}
                   className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row">
@@ -89,7 +90,7 @@ export default function SideBar() {
                   <span>Phones</span>
                 </Link>
               </li>
-              <li className="w-full">
+              <li className="w-full" onClick={() => setisOpen(false)}>
                 <Link
                   href={`/client/pages/product?category=laptops`}
                   className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row">
@@ -124,7 +125,7 @@ export default function SideBar() {
                   <span>Laptops</span>
                 </Link>
               </li>
-              <li className="w-full">
+              <li className="w-full" onClick={() => setisOpen(false)}>
                 <Link
                   href={`/client/pages/product?category=tablets`}
                   className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row">
@@ -155,7 +156,7 @@ export default function SideBar() {
                   <span>Tablets</span>
                 </Link>
               </li>
-              <li className="toggler w-full">
+              <li className="w-full" onClick={() => setisOpen(false)}>
                 <div className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row">
                   <svg
                     width="32px"
@@ -193,23 +194,10 @@ export default function SideBar() {
                     </g>
                   </svg>
                   <span>Gaming</span>
-
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 256 512"
-                    className="w-4 h-4 transition duration-300 ms-auto text-primary-400 transform rotate-90 arrow"
-                    width="16px"
-                    fill="currentColor"
-                    height="16px">
-                    <path
-                      fill="currentColor"
-                      d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"
-                    />
-                  </svg>
                 </div>
                 <div className="relative sm:absolute left-0 sm:left-full dropdown transition-all duration-300 ease-in sm:w-0 top-0  z-50 sm:shadow-md rounded h-0  bg-white sm:h-full"></div>
               </li>
-              <li className="w-full">
+              <li className="w-full" onClick={() => setisOpen(false)}>
                 <Link
                   href="/client/pages/product?category=headphones"
                   className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row ">
@@ -253,7 +241,7 @@ export default function SideBar() {
                   <span>HeadPhones </span>
                 </Link>
               </li>
-              <li className="w-full">
+              <li className="w-full" onClick={() => setisOpen(false)}>
                 <Link
                   href="/client/pages/product?category=smartwatch"
                   className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row">
@@ -280,7 +268,7 @@ export default function SideBar() {
                   <span>SmartWatch</span>
                 </Link>
               </li>
-              <li className="w-full toggler">
+              <li className="w-full " onClick={() => setisOpen(false)}>
                 <div className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row">
                   <svg
                     fill="#000000"
@@ -299,18 +287,6 @@ export default function SideBar() {
                     </g>
                   </svg>
                   <span>Accessories</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 256 512"
-                    className="w-4 h-4 transition duration-300 ms-auto text-primary-400 transform rotate-90 arrow"
-                    width="16px"
-                    fill="currentColor"
-                    height="16px">
-                    <path
-                      fill="currentColor"
-                      d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z"
-                    />
-                  </svg>
                 </div>
                 <div className="relative sm:absolute left-0 sm:left-full dropdown transition-all duration-300 ease-in sm:w-0 top-0  z-50 sm:shadow-md rounded h-0  bg-white sm:h-full"></div>
               </li>
