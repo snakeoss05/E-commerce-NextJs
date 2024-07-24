@@ -62,7 +62,7 @@ export default function Products() {
     };
 
     fetchProducts();
-  }, [page, discount, category, minPrice, maxPrice, stock, mark]);
+  }, [page, discount, category, minPrice, maxPrice, stock, mark, MarkList]);
   const handleDelete = async (id) => {
     const res = await fetch(
       `https://e-commerce-backend-dvaf.onrender.com/api/products/${id}`,
