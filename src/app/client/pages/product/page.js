@@ -6,47 +6,44 @@ import Pagination from "../../components/Pagination/Pagination";
 import { useSearchParams } from "next/navigation";
 import ProductSkeleton from "../../components/ProductItem/ProductSkeleton";
 import axios from "axios";
+
 export default function Products() {
   const searchParams = useSearchParams();
-  const discount = searchParams.get("discount");
+
   const category = searchParams.get("category");
   const [products, setProducts] = useState([]);
+  const [discount, setDiscounts] = useState(
+    searchParams.get("discount") || false
+  );
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
-  const [MarkList, setMarkList] = useState([]);
+  const [markList, setMarkList] = useState([]);
   const [stock, setStock] = useState("");
   const [mark, setMark] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [sortField, setSortField] = useState(""); // New state for sorting
+  const [sortOrder, setSortOrder] = useState(""); // New state for sorting
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const queryParams = new URLSearchParams({});
-      if (discount === "true") {
-        queryParams.append("discount", discount);
-      }
-      if (category !== null) {
-        queryParams.append("category", category);
-      }
-
-      if (minPrice !== "") {
-        queryParams.append("minPrice", minPrice);
-      }
-
-      if (maxPrice !== "") {
-        queryParams.append("maxPrice", maxPrice);
-      }
-      if (stock !== "") {
-        queryParams.append("stock", stock);
-      }
-      if (mark !== "") {
-        queryParams.append("mark", mark);
-      }
+      const queryParams = new URLSearchParams({
+        page: page.toString(),
+        limit: "8",
+        discount: discount,
+        category: category ?? "",
+        minPrice: minPrice !== "" ? minPrice : "",
+        maxPrice: maxPrice !== "" ? maxPrice : "",
+        stock: stock !== "" ? stock : "",
+        mark: mark !== "" ? mark : "",
+        sortField: sortField || "", // Include sorting field
+        sortOrder: sortOrder || "", // Include sorting order
+      });
 
       try {
         const res = await axios.get(
-          `https://e-commerce-backend-dvaf.onrender.com/api/products?page=${page}&limit=8&${queryParams.toString()}`
+          `https://e-commerce-backend-dvaf.onrender.com/api/products?${queryParams.toString()}`
         );
         setProducts(res.data.data);
         setTotalPages(res.data.totalPages);
@@ -61,7 +58,18 @@ export default function Products() {
     };
 
     fetchProducts();
-  }, [page, discount, category, minPrice, maxPrice, stock, mark, MarkList]);
+  }, [
+    page,
+    discount,
+    category,
+    minPrice,
+    maxPrice,
+    stock,
+    mark,
+    sortField,
+    sortOrder,
+  ]);
+
   const handleDelete = async (id) => {
     const res = await fetch(
       `https://e-commerce-backend-dvaf.onrender.com/api/products/${id}`,
@@ -76,6 +84,13 @@ export default function Products() {
       console.error("Failed to delete product");
     }
   };
+
+  const handleSortChange = (field, order) => {
+    setSortField(field);
+    setSortOrder(order);
+    setIsOpen(false);
+  };
+
   return (
     <div className="flex flex-col gap-4 relative lg:gap-8 my-4 px-4 sm:px-8">
       <div className="flex items-center space-x-4 ms-auto relative">
@@ -122,7 +137,7 @@ export default function Products() {
         <div
           onMouseLeave={() => setIsOpen(false)}
           id="dropdownSort1"
-          className={`origin-top-left absolute w-40 right-0 mt-2  top-full z-50  rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 transition ease-out duration-300 ${
+          className={`origin-top-left absolute w-40 right-0 mt-2 top-full z-50 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 transition ease-out duration-300 ${
             isOpen
               ? " transform block opacity-100 "
               : "transform hidden opacity-0 "
@@ -132,73 +147,53 @@ export default function Products() {
             className="p-2 text-left text-sm font-medium text-gray-500 dark:text-gray-400"
             aria-labelledby="sortDropdownButton">
             <li>
-              <a
-                href="#"
+              <button
+                onClick={() => handleSortChange("createdAt", "desc")}
                 className="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
-                {" "}
-                The most popular{" "}
-              </a>
+                Newest
+              </button>
             </li>
             <li>
-              <a
-                href="#"
+              <button
+                onClick={() => handleSortChange("price", "asc")}
                 className="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
-                {" "}
-                Newest{" "}
-              </a>
+                Increasing price
+              </button>
             </li>
             <li>
-              <a
-                href="#"
+              <button
+                onClick={() => handleSortChange("price", "desc")}
                 className="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
-                {" "}
-                Increasing price{" "}
-              </a>
+                Decreasing price
+              </button>
             </li>
             <li>
-              <a
-                href="#"
+              <button
+                onClick={() => setDiscounts(true)}
                 className="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
-                {" "}
-                Decreasing price{" "}
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
-                {" "}
-                No. reviews{" "}
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
-                {" "}
-                Discount %{" "}
-              </a>
+                Discount %
+              </button>
             </li>
           </ul>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-5 lg:gap-8 ">
-        <div className="rounded-lg px-0  sm:px-4 ">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-5 lg:gap-8">
+        <div className="rounded-lg px-0 sm:px-4">
           <Filter
             mark={mark}
             setMark={setMark}
             stock={stock}
             setStock={setStock}
             maxPrice={maxPrice}
-            MarkList={MarkList}
+            MarkList={markList}
             minPrice={minPrice}
             setMaxPrice={setMaxPrice}
             setMinPrice={setMinPrice}
           />
         </div>
-        <div className="rounded-lg lg:col-span-4 gap-4 ">
-          <div className="mb-4 grid gap-4 grid-cols-1 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4 ">
+        <div className="rounded-lg lg:col-span-4 gap-4">
+          <div className="mb-4 grid gap-4 grid-cols-1 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
             {products.length > 0
               ? products.map((product) => (
                   <ProductItem

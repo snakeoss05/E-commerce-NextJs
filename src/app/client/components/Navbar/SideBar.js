@@ -59,9 +59,10 @@ export default function SideBar() {
                   strokeWidth="1.5"
                   strokeLinecap="round"></path>
               </svg>
-              <li className="w-full" onClick={() => setisOpen(false)}>
+              <li className="w-full">
                 <Link
                   href={`/client/pages/product?category=phones`}
+                  onClick={() => setisOpen(false)}
                   className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row">
                   <svg
                     width="32px"
@@ -90,9 +91,10 @@ export default function SideBar() {
                   <span>Phones</span>
                 </Link>
               </li>
-              <li className="w-full" onClick={() => setisOpen(false)}>
+              <li className="w-full">
                 <Link
                   href={`/client/pages/product?category=laptops`}
+                  onClick={() => setisOpen(false)}
                   className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row">
                   <svg
                     width="32px"
@@ -125,9 +127,10 @@ export default function SideBar() {
                   <span>Laptops</span>
                 </Link>
               </li>
-              <li className="w-full" onClick={() => setisOpen(false)}>
+              <li className="w-full">
                 <Link
                   href={`/client/pages/product?category=tablets`}
+                  onClick={() => setisOpen(false)}
                   className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row">
                   <svg
                     width="32px"
@@ -156,8 +159,11 @@ export default function SideBar() {
                   <span>Tablets</span>
                 </Link>
               </li>
-              <li className="w-full" onClick={() => setisOpen(false)}>
-                <div className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row">
+              <li className="w-full">
+                <Link
+                  href={`/client/pages/product?category=gaming`}
+                  onClick={() => setisOpen(false)}
+                  className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row">
                   <svg
                     width="32px"
                     height="32px"
@@ -194,12 +200,12 @@ export default function SideBar() {
                     </g>
                   </svg>
                   <span>Gaming</span>
-                </div>
-                <div className="relative sm:absolute left-0 sm:left-full dropdown transition-all duration-300 ease-in sm:w-0 top-0  z-50 sm:shadow-md rounded h-0  bg-white sm:h-full"></div>
+                </Link>
               </li>
-              <li className="w-full" onClick={() => setisOpen(false)}>
+              <li className="w-full">
                 <Link
                   href="/client/pages/product?category=headphones"
+                  onClick={() => setisOpen(false)}
                   className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row ">
                   <svg
                     width="32px"
@@ -241,7 +247,7 @@ export default function SideBar() {
                   <span>HeadPhones </span>
                 </Link>
               </li>
-              <li className="w-full" onClick={() => setisOpen(false)}>
+              <li className="w-full">
                 <Link
                   href="/client/pages/product?category=smartwatch"
                   className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row">
@@ -268,8 +274,11 @@ export default function SideBar() {
                   <span>SmartWatch</span>
                 </Link>
               </li>
-              <li className="w-full " onClick={() => setisOpen(false)}>
-                <div className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row">
+              <li className="w-full ">
+                <Link
+                  href={"/client/pages/product?category=accessories"}
+                  onClick={() => setisOpen(false)}
+                  className="text-lg hover:bg-gray-200 rounded-lg font-bold p-2 gap-4 flex items-center flex-row">
                   <svg
                     fill="#000000"
                     width="32px"
@@ -287,8 +296,7 @@ export default function SideBar() {
                     </g>
                   </svg>
                   <span>Accessories</span>
-                </div>
-                <div className="relative sm:absolute left-0 sm:left-full dropdown transition-all duration-300 ease-in sm:w-0 top-0  z-50 sm:shadow-md rounded h-0  bg-white sm:h-full"></div>
+                </Link>
               </li>
             </ul>
 

@@ -2,7 +2,6 @@ import React from "react";
 
 export default function Filter({
   setMark,
-  stock,
   setStock,
   MarkList,
   maxPrice,
