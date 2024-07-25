@@ -5,10 +5,15 @@ import { useAppSelector } from "@/lib/hooks";
 
 export default function WishListIcon() {
   const [isMounted, setIsMounted] = useState(false);
+  const isAuth = useAppSelector((state) => state.auth.token);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  if (!isAuth) {
+    return null;
+  }
 
   if (!isMounted) {
     return null;

@@ -42,7 +42,6 @@ export const config = {
     "/client/pages/myaccount/myaddress",
     "/client/pages/myaccount/myprofile",
     "/client/pages/myaccount",
-    "/client/pages/wishlist",
     "/dashboard/orders",
     "/dashboard/addproduct", // Adding admin route to matcher
   ],

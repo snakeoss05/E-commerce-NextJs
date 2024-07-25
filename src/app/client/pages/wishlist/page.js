@@ -7,10 +7,11 @@ import { getWishlistById, deleteWishlistById } from "@/utils/wishlistService";
 
 export default function WhishList() {
   const [products, setProducts] = useState([]);
-  const user = useAppSelector((state) => state.auth.token);
+  const isAuth = useAppSelector((state) => state.auth.token);
+  const user = useAppSelector((state) => state.auth.user);
 
   useEffect(() => {
-    if (user) {
+    if (isAuth) {
       getWishlistById(user._id).then(
         (data) => {
           setProducts(data.data.productId);
@@ -20,7 +21,7 @@ export default function WhishList() {
         }
       );
     }
-  }, [user]);
+  }, [isAuth]);
 
   function handleDelete(id) {
     deleteWishlistById(id).then((data) => {
@@ -28,7 +29,7 @@ export default function WhishList() {
     });
   }
 
-  if (!user) return null;
+  if (!isAuth) return null;
 
   if (products.length === 0)
     return (
