@@ -15,6 +15,7 @@ export default function OrderSummary() {
   const totalAmount = useAppSelector((state) => state.cart.totalAmount);
   const totalSaving = useAppSelector((state) => state.cart.totalSaving);
   const totalFinal = useAppSelector((state) => state.cart.totalFinal);
+  const [order, setOrder] = useState({});
   const includeDeliveryFee = useAppSelector(
     (state) => state.cart.includeDeliveryFee
   );
@@ -52,6 +53,8 @@ export default function OrderSummary() {
       );
       if (response.status === 201) {
         toast.success("Thanks for your purchase, we're getting it ready!");
+        setOrder(response.data.data);
+        setOrderConfirmation(true);
       } else {
         toast.error("Something went wrong");
       }
@@ -126,161 +129,218 @@ export default function OrderSummary() {
           Order summary
         </li>
       </ol>
-
-      <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
-        <form action="#" className="mx-auto max-w-screen-xl px-4 2xl:px-0">
-          <div className="mx-auto max-w-3xl">
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
-              Order summary
+      {orderConfirmation ? (
+        <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+          <div className="mx-auto max-w-2xl px-4 2xl:px-0">
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl mb-2">
+              Thanks for your order!
             </h2>
-            <div className="mt-6 space-y-4 border-b border-t border-gray-200 py-8 dark:border-gray-700 sm:mt-8">
-              <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-                Billing &amp; Delivery information
-              </h4>
-
-              <dl>
-                <dt className="text-base font-medium text-gray-900 dark:text-white">
-                  Individual
+            <p className="text-gray-500 dark:text-gray-400 mb-6 md:mb-8">
+              Your order{" "}
+              <a
+                href="#"
+                className="font-medium text-gray-900 dark:text-white hover:underline">
+                #{order.orderId}
+              </a>{" "}
+              will be processed within 24 hours during working days. We will
+              notify you by email once your order has been shipped.
+            </p>
+            <div className="space-y-4 sm:space-y-2 rounded-lg border border-gray-100 bg-gray-50 p-6 dark:border-gray-700 dark:bg-gray-800 mb-6 md:mb-8">
+              <dl className="sm:flex items-center justify-between gap-4">
+                <dt className="font-normal mb-1 sm:mb-0 text-gray-500 dark:text-gray-400">
+                  Date
                 </dt>
-                {user.address?.city},{user.address?.state}{" "}
-                {user.address?.street}
+                <dd className="font-medium text-gray-900 dark:text-white sm:text-end">
+                  {new Date(order.createdAt).toLocaleString()}
+                </dd>
+              </dl>
+              <dl className="sm:flex items-center justify-between gap-4">
+                <dt className="font-normal mb-1 sm:mb-0 text-gray-500 dark:text-gray-400">
+                  Payment Method
+                </dt>
+                <dd className="font-medium text-gray-900 dark:text-white sm:text-end">
+                  {order.paymentMethod}
+                </dd>
+              </dl>
+              <dl className="sm:flex items-center justify-between gap-4">
+                <dt className="font-normal mb-1 sm:mb-0 text-gray-500 dark:text-gray-400">
+                  Name
+                </dt>
+                <dd className="font-medium text-gray-900 dark:text-white sm:text-end">
+                  {order.fullname || order.user?.name}
+                </dd>
+              </dl>
+              <dl className="sm:flex items-center justify-between gap-4">
+                <dt className="font-normal mb-1 sm:mb-0 text-gray-500 dark:text-gray-400">
+                  Address
+                </dt>
+                <dd className="font-medium text-gray-900 dark:text-white sm:text-end">
+                  {order.address ||
+                    `${order.user?.address.city} ${order.user?.address.state} ${order.user?.address.street}`}
+                </dd>
+              </dl>
+              <dl className="sm:flex items-center justify-between gap-4">
+                <dt className="font-normal mb-1 sm:mb-0 text-gray-500 dark:text-gray-400">
+                  Phone
+                </dt>
+                <dd className="font-medium text-gray-900 dark:text-white sm:text-end">
+                  {order.phone || order.user?.address.phone}
+                </dd>
               </dl>
             </div>
-            <div className="mt-6 sm:mt-8 grid grid-cols-1 gap-y-8 gap-x-4 sm:grid-cols-2">
-              <div className="relative overflow-x-auto border-b border-gray-200 dark:border-gray-800">
-                <table className="w-full text-left font-medium text-gray-900 dark:text-white ">
-                  <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
-                    {cart.length > 0 &&
-                      cart.map((item) => (
-                        <tr key={item.id}>
-                          <td className="whitespace-nowrap py-4 md:w-full">
-                            <div className="flex items-center gap-4">
-                              <a
-                                href="#"
-                                className="flex items-center aspect-square w-10 h-10 shrink-0">
-                                <Image
-                                  width={40}
-                                  height={40}
-                                  className="h-auto w-full max-h-full dark:hidden"
-                                  src={item.image}
-                                  alt="imac image"
-                                />
-                              </a>
-                              <a
-                                href="#"
-                                className="hover:underline truncate w-16">
-                                {item.name}
-                              </a>
-                            </div>
-                          </td>
-                          <td className="p-4 text-base font-normal text-gray-900 dark:text-white">
-                            {item.quantity}
-                          </td>
-                          <td className="p-4 text-right text-base font-bold text-gray-900 dark:text-white">
-                            {item.price.toFixed(2)} TND
-                          </td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
-              </div>
-              <div className="mt-4 space-y-6  text-nowrap">
-                <h4 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  Order summary
+            <div className="flex items-center space-x-4">
+              <Link
+                href="/client/pages/myaccount/myorder"
+                className="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+                Track your order
+              </Link>
+              <Link
+                href="/"
+                className="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                Return to shopping
+              </Link>
+            </div>
+          </div>
+        </section>
+      ) : (
+        <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+          <form action="#" className="mx-auto max-w-screen-xl px-4 2xl:px-0">
+            <div className="mx-auto max-w-3xl">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
+                Order summary
+              </h2>
+              <div className="mt-6 space-y-4 border-b border-t border-gray-200 py-8 dark:border-gray-700 sm:mt-8">
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
+                  Billing &amp; Delivery information
                 </h4>
-                <div className="space-y-4">
-                  <div className="space-y-2">
-                    <dl className="flex items-center justify-between gap-4">
-                      <dt className="text-gray-500 dark:text-gray-400">
-                        Original price
-                      </dt>
-                      <dd className="text-base font-medium text-gray-900 dark:text-white">
-                        {totalAmount.toFixed(2)} TND
-                      </dd>
-                    </dl>
-                    <dl className="flex items-center justify-between gap-4">
-                      <dt className="text-gray-500 dark:text-gray-400">
-                        Savings
-                      </dt>
-                      <dd className="text-base font-medium text-green-500">
-                        {totalSaving.toFixed(2)} TND
-                      </dd>
-                    </dl>
-                    <dl className="flex items-center justify-between gap-4">
-                      <dt className="text-gray-500 dark:text-gray-400">
-                        Store Pickup
-                      </dt>
-                      <dd className="text-base font-medium text-gray-900 dark:text-white">
-                        {totalAmount - totalSaving.toFixed(2)}
-                      </dd>
-                    </dl>
 
-                    {includeDeliveryFee && (
-                      <dl className="flex items-center justify-between gap-4 py-3">
-                        <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
-                          Delivery fee
+                <dl>
+                  <dt className="text-base font-medium text-gray-900 dark:text-white">
+                    Individual
+                  </dt>
+                  {user.address?.city},{user.address?.state}{" "}
+                  {user.address?.street}
+                </dl>
+              </div>
+              <div className="mt-6 sm:mt-8 grid grid-cols-1 gap-y-8 gap-x-4 sm:grid-cols-2">
+                <div className="relative overflow-x-auto border-b border-gray-200 dark:border-gray-800">
+                  <table className="w-full text-left font-medium text-gray-900 dark:text-white ">
+                    <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
+                      {cart.length > 0 &&
+                        cart.map((item) => (
+                          <tr key={item.id}>
+                            <td className="whitespace-nowrap py-4 md:w-full">
+                              <div className="flex items-center gap-4">
+                                <a
+                                  href="#"
+                                  className="flex items-center aspect-square w-10 h-10 shrink-0">
+                                  <Image
+                                    width={40}
+                                    height={40}
+                                    className="h-auto w-full max-h-full dark:hidden"
+                                    src={item.image}
+                                    alt="imac image"
+                                  />
+                                </a>
+                                <a
+                                  href="#"
+                                  className="hover:underline truncate w-16">
+                                  {item.name}
+                                </a>
+                              </div>
+                            </td>
+                            <td className="p-4 text-base font-normal text-gray-900 dark:text-white">
+                              {item.quantity}
+                            </td>
+                            <td className="p-4 text-right text-base font-bold text-gray-900 dark:text-white">
+                              {item.price.toFixed(2)} TND
+                            </td>
+                          </tr>
+                        ))}
+                    </tbody>
+                  </table>
+                </div>
+                <div className="mt-4 space-y-6  text-nowrap">
+                  <h4 className="text-xl font-semibold text-gray-900 dark:text-white">
+                    Order summary
+                  </h4>
+                  <div className="space-y-4">
+                    <div className="space-y-2">
+                      <dl className="flex items-center justify-between gap-4">
+                        <dt className="text-gray-500 dark:text-gray-400">
+                          Original price
                         </dt>
-                        <dd className="text-base font-medium text-primary-500">
-                          7 DT
+                        <dd className="text-base font-medium text-gray-900 dark:text-white">
+                          {totalAmount.toFixed(2)} TND
                         </dd>
                       </dl>
-                    )}
-                    <dl className="flex items-center justify-between gap-4">
-                      <dt className="text-gray-500 dark:text-gray-400">Tax</dt>
-                      <dd className="text-base font-medium text-gray-900 dark:text-white">
-                        1 TND
+                      <dl className="flex items-center justify-between gap-4">
+                        <dt className="text-gray-500 dark:text-gray-400">
+                          Savings
+                        </dt>
+                        <dd className="text-base font-medium text-green-500">
+                          {totalSaving.toFixed(2)} TND
+                        </dd>
+                      </dl>
+                      <dl className="flex items-center justify-between gap-4">
+                        <dt className="text-gray-500 dark:text-gray-400">
+                          Store Pickup
+                        </dt>
+                        <dd className="text-base font-medium text-gray-900 dark:text-white">
+                          {totalAmount - totalSaving.toFixed(2)}
+                        </dd>
+                      </dl>
+
+                      {includeDeliveryFee && (
+                        <dl className="flex items-center justify-between gap-4 py-3">
+                          <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
+                            Delivery fee
+                          </dt>
+                          <dd className="text-base font-medium text-primary-500">
+                            7 DT
+                          </dd>
+                        </dl>
+                      )}
+                      <dl className="flex items-center justify-between gap-4">
+                        <dt className="text-gray-500 dark:text-gray-400">
+                          Tax
+                        </dt>
+                        <dd className="text-base font-medium text-gray-900 dark:text-white">
+                          1 TND
+                        </dd>
+                      </dl>
+                    </div>
+                    <dl className="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
+                      <dt className="text-lg font-bold text-gray-900 dark:text-white">
+                        Total
+                      </dt>
+                      <dd className="text-lg font-bold text-gray-900 dark:text-white">
+                        {totalFinal.toFixed(2)} TND
                       </dd>
                     </dl>
                   </div>
-                  <dl className="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
-                    <dt className="text-lg font-bold text-gray-900 dark:text-white">
-                      Total
-                    </dt>
-                    <dd className="text-lg font-bold text-gray-900 dark:text-white">
-                      {totalFinal.toFixed(2)} TND
-                    </dd>
-                  </dl>
-                </div>
 
-                <div className="gap-4 sm:flex sm:items-center">
-                  <button
-                    type="button"
-                    aria-roledescription="return to shopping"
-                    onClick={() => router.push("/")}
-                    className="w-full rounded-lg  border border-gray-200 bg-white px-5  py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">
-                    Return to Shopping
-                  </button>
-                  <button
-                    type="button"
-                    aria-roledescription="send the order"
-                    onClick={createOrder}
-                    className="mt-4 flex w-full items-center justify-center rounded-lg bg-primary-700  px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300  dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:mt-0">
-                    Send the order
-                  </button>
+                  <div className="gap-4 sm:flex sm:items-center">
+                    <button
+                      type="button"
+                      aria-roledescription="return to shopping"
+                      onClick={() => router.push("/")}
+                      className="w-full rounded-lg  border border-gray-200 bg-white px-5  py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">
+                      Return to Shopping
+                    </button>
+                    <button
+                      type="button"
+                      aria-roledescription="send the order"
+                      onClick={createOrder}
+                      className="mt-4 flex w-full items-center justify-center rounded-lg bg-primary-700  px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300  dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:mt-0">
+                      Send the order
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </form>
-      </section>
-      {orderConfirmation && (
-        <div className="rounded-3xl shadow-2xl my-10 ">
-          <div className="p-8 text-center sm:p-12">
-            <p className="text-sm font-semibold uppercase tracking-widest text-pink-500">
-              Your order is on the way
-            </p>
-
-            <h2 className="mt-6 text-3xl font-bold">
-              Thanks for your purchase, we're getting it ready!
-            </h2>
-
-            <Link
-              className="mt-8 inline-block w-full rounded-full bg-blue-500 py-4 text-sm font-bold text-white shadow-xl"
-              href="/client/pages/myaccount/myorder">
-              Track Order
-            </Link>
-          </div>
-        </div>
+          </form>
+        </section>
       )}
     </div>
   );

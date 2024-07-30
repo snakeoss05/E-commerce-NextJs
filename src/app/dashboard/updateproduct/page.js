@@ -82,7 +82,7 @@ export default function UpdateProduct() {
             id="Search"
             value={ProductId}
             onChange={(e) => setProductId(e.target.value)}
-            placeholder="Search By Order Id"
+            placeholder="Search By product Id"
             className="w-full rounded-md border-gray-200 bg-gray-100 py-1.5 sm:py-2.5 pe-10 ps-4 shadow-sm sm:text-sm focus-visible:outline-none"
           />
           <span className="absolute bg-black  rounded-r-lg inset-y-0 end-0 grid w-10 place-content-center">

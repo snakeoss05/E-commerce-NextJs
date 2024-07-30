@@ -31,9 +31,9 @@ export default function MyOrder() {
   useEffect(() => {
     if (isAuth) {
       getOrders(page, orderDate, status).then((data) => {
+        setLoading(false);
         setOrders(data.data);
         setTotalPages(data.totalPages);
-        setLoading(false);
       });
     }
   }, [isAuth, page, orderDate, status]);
@@ -42,9 +42,9 @@ export default function MyOrder() {
     updateOrderStatus(orderId, status).then((data) => {
       if (data) {
         getOrders(page, orderDate, status).then((data) => {
+          setLoading(false);
           setOrders(data.data);
           setTotalPages(data.totalPages);
-          setLoading(false);
         });
         toast.success("Order status updated");
       }
@@ -54,9 +54,9 @@ export default function MyOrder() {
     DeleteOrder(orderId).then((data) => {
       if (data) {
         getOrders(page, orderDate, status).then((data) => {
+          setLoading(false);
           setOrders(data.data);
           setTotalPages(data.totalPages);
-          setLoading(false);
         });
         toast.success("Order deleted");
       }
@@ -64,8 +64,8 @@ export default function MyOrder() {
   }
   function handleOrderSearch() {
     getOrdersByOderId(OrderIdInput).then((data) => {
-      setOrders(data.data);
       setLoading(false);
+      setOrders(data.data);
     });
   }
   function openModal(order) {

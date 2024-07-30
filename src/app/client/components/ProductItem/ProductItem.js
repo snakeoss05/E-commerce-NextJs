@@ -16,6 +16,7 @@ export default function ProductItem({ product, quickView }) {
 
   const handleAddToCart = () => {
     dispatch(addItem(product));
+    toast.success("added to cart successfully");
   };
 
   function handleAddToWishlist() {

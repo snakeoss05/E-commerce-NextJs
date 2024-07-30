@@ -16,6 +16,7 @@ export default function Products() {
     searchParams.get("discount") || false
   );
   const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
   const [totalPages, setTotalPages] = useState(1);
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
@@ -28,6 +29,7 @@ export default function Products() {
 
   useEffect(() => {
     const fetchProducts = async () => {
+      setIsLoading(true);
       const queryParams = new URLSearchParams({
         page: page.toString(),
         limit: "8",
@@ -45,6 +47,7 @@ export default function Products() {
         const res = await axios.get(
           `https://e-commerce-backend-dvaf.onrender.com/api/products?${queryParams.toString()}`
         );
+        setIsLoading(false);
         setProducts(res.data.data);
         setTotalPages(res.data.totalPages);
         setMarkList([
@@ -194,17 +197,23 @@ export default function Products() {
         </div>
         <div className="rounded-lg lg:col-span-4 gap-4">
           <div className="mb-4 grid gap-4 grid-cols-1 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
-            {products.length > 0
-              ? products.map((product) => (
-                  <ProductItem
-                    key={product._id}
-                    product={product}
-                    handleDelete={handleDelete}
-                  />
-                ))
-              : Array.from({ length: 8 }).map((_, index) => (
-                  <ProductSkeleton key={index} />
-                ))}
+            {products.length > 0 ? (
+              products.map((product) => (
+                <ProductItem
+                  key={product._id}
+                  product={product}
+                  handleDelete={handleDelete}
+                />
+              ))
+            ) : (
+              <div className="text-center w-full flex justify-center items-center col-span-4 h-96">
+                <p className="text-3xl text-gray-400 ">No products found</p>
+              </div>
+            )}
+            {isLoading &&
+              Array.from({ length: 8 }).map((_, index) => (
+                <ProductSkeleton key={index} />
+              ))}
           </div>
           <Pagination page={page} totalPages={totalPages} setPage={setPage} />
         </div>

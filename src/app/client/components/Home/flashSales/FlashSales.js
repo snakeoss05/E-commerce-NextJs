@@ -17,7 +17,7 @@ export default function FlashSales() {
   const swiperRef = useRef(null);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const targetDate = "2024-07-28T00:00:00";
+  const targetDate = "2024-08-28T00:00:00";
 
   useEffect(() => {
     const fetchProducts = async () => {

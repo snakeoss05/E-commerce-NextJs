@@ -35,20 +35,6 @@ export default function QuickView({ product, isOpen, onClose }) {
 
   if (!isOpen) return null;
 
-  if (!product) {
-    return (
-      <div className="relative flex justify-center items-center py-8 h-screen w-screen">
-        <div className="absolute animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-purple-500"></div>
-        <Image
-          src="https://www.svgrepo.com/show/509001/avatar-thinking-9.svg"
-          alt="Loading"
-          width={112}
-          height={112}
-          className="rounded-full"
-        />
-      </div>
-    );
-  }
   return (
     <div
       className="fixed top-0 left-0 flex items-center   justify-center h-screen w-screen p-4 overflow-hidden bg-black bg-opacity-50 "
